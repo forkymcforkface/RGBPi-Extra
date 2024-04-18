@@ -23,7 +23,7 @@ BLACK = (0, 0, 0)
 
 display_loading_screen(screen, font)
 
-repo_owner = "sd2cv"
+repo_owner = "forkymcforkface"
 repo_name = "RGBPi-Extra"
 branch = "main"
 path = "RGBPi-Extra"
