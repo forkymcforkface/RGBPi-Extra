@@ -91,7 +91,7 @@ font = pygame.font.Font(pygame.font.get_default_font(), 14)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
-repo_owner = "sd2cv"
+repo_owner = "forkymcforkface"
 repo_name = "RGBPi-Extra"
 branch = "main"
 path = "RGBPi-Extra"
