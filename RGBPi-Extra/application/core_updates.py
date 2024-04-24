@@ -1,3 +1,4 @@
+#To add more cores, just zip them with 7z and place them in the cores folder. It will automatically show up in the RGBPi-Extra ui on next launch.
 import os
 import pygame_menu
 import subprocess
