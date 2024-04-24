@@ -22,7 +22,7 @@ I have found new scripts made by other people and added them to this Repo. I don
 
 ## Installation
 
-1. Download [Install RGBPi-Extra](https://github.com/sd2cv/RGBPi-Extra/blob/main/Install%20RGBPi-Extra.sh)
+1. Download [Install RGBPi-Extra](https://github.com/forkymcforkface/RGBPi-Extra/blob/main/Install%20RGBPi-Extra.sh)
 2. Place it in your /roms/ports folder
 3. Scan for new games in the rgbpi ui
 4. Go to ports in rgbpi ui and run Install RGBPi-Extra
