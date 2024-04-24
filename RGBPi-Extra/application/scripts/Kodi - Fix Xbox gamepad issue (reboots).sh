@@ -20,3 +20,4 @@ for rule in "${rules[@]}"; do
 done
 
 echo "Xbox controller rules added to udev rules."
+sudo reboot
