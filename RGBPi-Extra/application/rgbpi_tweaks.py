@@ -35,7 +35,7 @@ def display_message(message, loading_text=''):
     pygame.display.flip()
 
 def run_script(script_name, menu):
-    script_path = os.path.join(SCRIPTS_FOLDER, f"{script_name}.sh")
+    script_path = os.path.join(SCRIPTS_FOLDER, f"{script_name}.bash")
     make_script_executable(script_path)
     display_message('Script Executing')
     loading_text = ''
@@ -70,7 +70,7 @@ def get_rgbpi_tweaks_menu(menu_theme, WINDOW_SIZE):
     script_files = sorted(f for f in os.listdir(SCRIPTS_FOLDER) if os.path.isfile(os.path.join(SCRIPTS_FOLDER, f)))
     for script_file in script_files:
         script_name, script_ext = os.path.splitext(script_file)
-        if script_ext.lower() == '.sh':
+        if script_ext.lower() == '.bash':
             menu.add.button(script_name, run_script, script_name, menu)
     menu.add.button('Return to menu', pygame_menu.events.BACK)
     return menu

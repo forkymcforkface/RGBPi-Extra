@@ -138,9 +138,9 @@ def launch_content():
             elif system == 'saturn':
                 launch_command = path_retroarch + color_cmd + device_cmd + netplay_cmd + ' -L ' + path_cores + '/yabasanshiro_libretro.so --appendconfig=' + retroarch_cfg_file + ' "' + game_path + '"'                  
             elif system == 'cdi':
-                launch_command = path_cores + '/launchcdi.sh --appendconfig=' + retroarch_cfg_file + ' "' + game_path + '"'     #CDi script is so it can run at 480i             
+                launch_command = path_cores + '/launchcdi.bash --appendconfig=' + retroarch_cfg_file + ' "' + game_path + '"'     #CDi script is so it can run at 480i             
             elif system == 'nds':
-                launch_command = path_cores + '/launchnds.sh --appendconfig=' + retroarch_cfg_file + ' "' + game_path + '"'     #NDS script is needed since the core wouldnt launch without sleeping UI
+                launch_command = path_cores + '/launchnds.bash --appendconfig=' + retroarch_cfg_file + ' "' + game_path + '"'     #NDS script is needed since the core wouldnt launch without sleeping UI
         
             utils.cmd(launch_command)
             utils.write_stats(start=start_date, end=time.time())
