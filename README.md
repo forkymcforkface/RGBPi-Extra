@@ -130,14 +130,18 @@ Since we are using CRTs not all cores/emulators will look good. This all depends
 - [ ] - `lr-race` - Neo Geo Pocket (Color) emulator - RACE! port for libretro. 
 - [ ] - `lr-reminiscence` - Flashback engine - Gregory Montoir’s Flashback emulator port for libretro
 - [ ] - `lr-sameboy` - Game Boy and Game Boy Color, emulator - SameBoy Port for libretro
-- [ ] - `lr-samecdi` - Philips CDI - same_cdi port for libretro
+- [X] - `lr-samecdi` - Philips CDI - same_cdi port for libretro - **runs great and at correct resolution, included in current patch**
 - [ ] - `lr-simcoupe` - SAM Coupe emulator - SimCoupe port for libretro
 - [ ] - `lr-swanstation` - Playstation emulator - Duckstation fork for libretro
 - [X] - `lr-TIC-80` - Fantasy Game Emulator - **runs great**
 - [ ] - `lr-thepowdertoy` - Sandbox physics game for libretro - 
 - [ ] - `lr-uzem` - Uzebox engine - Uzem port for libretro
 - [ ] - `lr-vemulator` - SEGA VMU emulator - 
-- [X] - `lr-yabasanshiro` - Saturn & ST-V emulator - **runs great, included in current patch**
+- [X] - `lr-virtualjaguar` - Atari Jaguar emulator - **runs ok at beat and has sound issues, included in current patch**
+- [X] - `lr-virtua;lboy` - VirtualBoy emulator - **runs great, included in current patch**
+- [X] - `lr-WonderSwan` - WonderSwan and WonderSwan Color emulator - **runs great, included in current patch**
+- [X] - `lr-AtariLynx` - Atari Lynx emulator - **runs great, included in current patch**
+- [X] - `lr-Videopac` - Videopac/Odyssey emulator - **runs great, included in current patch**
 
 #### Ports
 - [ ] - `0ad` - Battle of Survival - is a futuristic real-time strategy game 
