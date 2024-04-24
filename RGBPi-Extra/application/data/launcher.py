@@ -114,7 +114,7 @@ def launch_content():
         pygame.display.quit()
 
         try:
-            if '.sh' in game_path:
+            if '.bash' in game_path:
                 launch_command = '"' + game_path + '"'
                 utils.cmd('chmod +x ' + launch_command)
             elif system == 'videopac':
