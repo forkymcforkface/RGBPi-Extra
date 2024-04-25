@@ -60,10 +60,6 @@ IF YOU ARE REIMAGING YOUR SD CARD YOU MUST REMOVE RGBPI-EXTRA BEFORE DOING SO.
 
 To remove the patch open RGBPi-Extra ui, go to settings and select remove. This is required prior to reimaging your SD card if you are doing so.
 
-# Systems still in progress, only checked cores are implemented.
-
-
-
 
 https://github.com/sd2cv/RGBPi-Extra/assets/99993735/1b75acd4-bfe8-4d95-8eb5-8481741fbc86
 
