@@ -12,13 +12,6 @@ I have found new scripts made by other people and added them to this Repo. I don
  
  **Notes**
 - Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues. 
-- RGBPi OS runs on Bullseye aarch64
-- It uses a [custom kernel driver](https://github.com/rtomasa/rpi-dpidac) for the GPIO output
-- It uses a [custom retroarch build](https://github.com/rtomasa/RetroArch) with dynares driver built in, dynares the core fps and resolution and then adjusts the kernel driver framebuffer to match.
-- It does not have xorg out of the box so any emulators that require it wont work. You can install a LXQT desktop which will enable startx and xorg.
-- applications that use egl/kms can work, but may be limited to 240p
-
-
 
 ## Installation
 
@@ -26,7 +19,7 @@ I have found new scripts made by other people and added them to this Repo. I don
 2. Place it in your /roms/ports folder
 3. Scan for new games in the rgbpi ui
 4. Go to ports in rgbpi ui and run Install RGBPi-Extra
-5. The RGBPi-Extra UI will appear allowing you to apply the patch and restart. 
+5. The RGBPi-Extra UI will appear allowing you to apply the patch and restart. All cores and BIOS are included in the initial patch, you will have new system folders in your roms folder after reboot.
 
 
 
@@ -47,7 +40,7 @@ After installing **RGBPi-Extra** you will now have a RGBPi-Extra folder within p
 #### Retroarch Settings 
 This allows you to add retroarch features that are disabled by default by RGBPi-OS. Currently only boolean shows up in the UI, but you can add any global configs that you would like to /application/data/tweaks/gobal_configs.ini
 #### Update Cores
-Still in progress do not use this area
+This allows you to updates cores to the lateset manually compiled version. it also allows you replace the nes core with mesen. There is a restore all cores button that will restore all default os4 core. 
 #### Tweaks
 A collection of scripts to modify RGBPi OS settings, Bullseye settings or just general improvements
 #### Settings
@@ -63,13 +56,11 @@ IF YOU ARE REIMAGING YOUR SD CARD YOU MUST REMOVE RGBPI-EXTRA BEFORE DOING SO.
 3. Press patch and reboot
 4. ReScan for games
 
-Updates are currently implemented in a similar fashion to removing the RGBPi-Extras. The reasoning is that if anything happens during the download or patching process, your system is in a near vanilla state allowing it to work normally. 
-
-## Remove
+## Removal
 
 To remove the patch open RGBPi-Extra ui, go to settings and select remove. This is required prior to reimaging your SD card if you are doing so.
 
-# Systems still in progress, only checked cores are implemented. BIOS files are not included.
+# Systems still in progress, only checked cores are implemented.
 
 
 
@@ -92,17 +83,16 @@ Since we are using CRTs not all cores/emulators will look good. This all depends
 - [ ] - `supermodel-svn` - Sega Model 3 Arcade emulator
 - [X] - `Hypseus-singe` - LaserDisc emulator - **Included in ports from RGBPi OS official**
 
-#### Libretrocores
+#### Added Libretro cores
 
 - [X] - `lr-melondsds` - NDS emu - MelonDS port for libretro - **runs great**
-- [X] - `lr-mesen-s` - Super Nintendo emu - Mesen-S port for libretro
-- [X] - `lr-atari800` - 400, 800, 600 XL, 800XL, 130XE and 5200 game console emulator.
+- [X] - `lr-mesen-s` - Nes emu - Mesen-S port for libretro
+- [X] - `lr-atari5200` - 400, 800, 600 XL, 800XL, 130XE and 5200 game console emulator.
 - [X] - `lr-mednafen-vb` - Virtual Boy emulator - **runs great, not pixel perfect**
-- [X] - `lr-ppsspp` - PlayStation Portable emu - PPSSPP port for libretro - **works well some grapahics missing, included in current patch**
+- [X] - `lr-ppsspp` - PlayStation Portable emu - PPSSPP port for libretro - **works well, included in current patch**
 - [X] - `lr-samecdi` - Philips CDI - same_cdi port for libretro - **runs great and at correct resolution, included in current patch**
 - [X] - `lr-TIC-80` - Fantasy Game Emulator - **runs great**
 - [X] - `lr-virtualjaguar` - Atari Jaguar emulator - **runs ok at beat and has sound issues, included in current patch**
-- [X] - `lr-virtua;lboy` - VirtualBoy emulator - **runs great, included in current patch**
 - [X] - `lr-WonderSwan` - WonderSwan and WonderSwan Color emulator - **runs great, included in current patch**
 - [X] - `lr-AtariLynx` - Atari Lynx emulator - **runs great, included in current patch**
 - [X] - `lr-Videopac` - Videopac/Odyssey emulator - **runs great, included in current patch**
