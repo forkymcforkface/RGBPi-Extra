@@ -19,7 +19,7 @@ I have found new scripts made by other people and added them to this Repo. I don
 2. Place it in your /roms/ports folder
 3. Scan for new games in the rgbpi ui
 4. Go to ports in rgbpi ui and run Install RGBPi-Extra
-5. The RGBPi-Extra UI will appear allowing you to apply the patch and restart. 
+5. The RGBPi-Extra UI will appear allowing you to apply the patch and restart. All cores and BIOS are included in the initial patch, you will have new system folders in your roms folder after reboot.
 
 
 
