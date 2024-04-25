@@ -100,7 +100,6 @@ Since we are using CRTs not all cores/emulators will look good. This all depends
 - [X] - `lr-samecdi` - Philips CDI - same_cdi port for libretro - **runs great and at correct resolution, included in current patch**
 - [X] - `lr-TIC-80` - Fantasy Game Emulator - **runs great**
 - [X] - `lr-virtualjaguar` - Atari Jaguar emulator - **runs ok at beat and has sound issues, included in current patch**
-- [X] - `lr-virtua;lboy` - VirtualBoy emulator - **runs great, included in current patch**
 - [X] - `lr-WonderSwan` - WonderSwan and WonderSwan Color emulator - **runs great, included in current patch**
 - [X] - `lr-AtariLynx` - Atari Lynx emulator - **runs great, included in current patch**
 - [X] - `lr-Videopac` - Videopac/Odyssey emulator - **runs great, included in current patch**
