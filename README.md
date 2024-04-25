@@ -93,7 +93,7 @@ Since we are using CRTs not all cores/emulators will look good. This all depends
 #### Added Libretro cores
 
 - [X] - `lr-melondsds` - NDS emu - MelonDS port for libretro - **runs great**
-- [X] - `lr-mesen-s` - Super Nintendo emu - Mesen-S port for libretro
+- [X] - `lr-mesen-s` - Nes emu - Mesen-S port for libretro
 - [X] - `lr-atari5200` - 400, 800, 600 XL, 800XL, 130XE and 5200 game console emulator.
 - [X] - `lr-mednafen-vb` - Virtual Boy emulator - **runs great, not pixel perfect**
 - [X] - `lr-ppsspp` - PlayStation Portable emu - PPSSPP port for libretro - **works well, included in current patch**
