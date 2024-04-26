@@ -13,7 +13,7 @@ I have found new scripts made by other people and added them to this Repo. I don
  **Notes**
 - Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues. 
 
-## Installation Options
+## Installation Options DO NOT INSTALL RGBPI-EXTRA IF YOU ONLY USE AN SD CARD. EXTERNAL USB DRIVE INSTALLS ONLY
 A: Online Installer (This can have issues installing on NFS drives, use offline installer)
 
 1. Download [Install RGBPi-Extra](https://github.com/forkymcforkface/RGBPi-Extra/blob/main/Install%20RGBPi-Extra.sh)
