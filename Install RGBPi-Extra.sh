@@ -8,8 +8,10 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 installer_url="https://raw.githubusercontent.com/forkymcforkface/RGBPi-Extra/main/RGBPi-Extra/application/installer.py"
 installer_file="$script_dir/installer.py"
 
-if wget -q -O "$installer_file" "$installer_url"; then
-    python3 "$installer_file"
-    rm "$0"
+if ! wget -q -O "$installer_file" "$installer_url"; then
+    echo "Internet Required. Exiting."
+    exit 1
 fi
 
+python3 "$installer_file"
+rm "$0"
