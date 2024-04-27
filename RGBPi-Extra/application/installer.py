@@ -59,7 +59,16 @@ if not entry_exists:
     with open(games_dat, 'a') as f:
         f.write(data_to_insert)
 
+# Determine Python command based on the OS
+python_command = "python3"  # Default
+if os.path.exists("/etc/os-release"):
+    with open("/etc/os-release", "r") as f:
+        for line in f:
+            if "bookworm" in line.lower():
+                python_command = "python3.9"
+                break
+
 main_script = os.path.join(destination_dir, "application", "main.py")
-subprocess.Popen(["python", main_script])
+subprocess.Popen([python_command, main_script])
 
 os.remove(__file__)
