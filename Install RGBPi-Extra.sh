@@ -8,10 +8,9 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 installer_url="https://raw.githubusercontent.com/forkymcforkface/RGBPi-Extra/main/RGBPi-Extra/application/installer.py"
 installer_file="$script_dir/installer.py"
 
-if ! wget -q -O "$installer_file" "$installer_url"; then
-    echo "Internet Required. Exiting."
-    exit 1
+if grep -q bookworm /etc/os-release; then
+    python3.9 "$installer_file"
+else
+    python3 "$installer_file"
 fi
-
-python3 "$installer_file"
 rm "$0"
