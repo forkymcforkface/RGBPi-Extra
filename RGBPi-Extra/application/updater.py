@@ -143,4 +143,12 @@ with subprocess.Popen(['df', '-P', grandparent_dir], stdout=subprocess.PIPE) as 
 remove_patch()
 
 main_script = os.path.join(destination_dir, "application", "main.py")
-subprocess.Popen(["python", main_script])
+python_command = "python3"  # Default
+if os.path.exists("/etc/os-release"):
+    with open("/etc/os-release", "r") as f:
+        for line in f:
+            if "bookworm" in line.lower():
+                python_command = "python3.9"
+                break
+
+subprocess.Popen([python_command, main_script])
