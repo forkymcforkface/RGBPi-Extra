@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 cd "$(dirname "$(readlink -f "$0")")"
-if grep -q bookworm /etc/os-release; then
-    python3.9 application/main.py
-else
-    python3 application/main.py
+python_command="python3.9"
+if [[ "$(lsb_release -cs)" != "bookworm" ]]; then
+    python_command="python3"
 fi
+$python_command application/main.py
