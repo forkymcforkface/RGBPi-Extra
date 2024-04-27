@@ -73,7 +73,11 @@ def remove_patch():
     os.system('reboot')
 
 def update_and_restart():
-    subprocess.Popen(['python', 'updater.py'])
+    if sys.platform == 'bookworm':
+        python_executable = 'python3.9'
+    else:
+        python_executable = 'python3'
+    subprocess.Popen([python_executable, 'updater.py'])
     sys.exit()
 
 def get_tweaks_settings_menu(menu_theme, WINDOW_SIZE):
@@ -91,14 +95,3 @@ def get_tweaks_settings_menu(menu_theme, WINDOW_SIZE):
     menu.add.button('Return to menu', pygame_menu.events.BACK)
 
     return menu
-
-python_command = "python3"
-if os.path.exists("/etc/os-release"):
-    with open("/etc/os-release", "r") as f:
-        for line in f:
-            if "bookworm" in line.lower():
-                python_command = "python3.9"
-                break
-
-subprocess.Popen([python_command, 'updater.py'])
-sys.exit()
