@@ -142,5 +142,5 @@ with subprocess.Popen(['df', '-P', grandparent_dir], stdout=subprocess.PIPE) as 
 
 remove_patch()
 
-rgbpi_extra_script = os.path.join(parent_dir, "..", "RGBPi-Extra.sh")
-subprocess.Popen(["bash", rgbpi_extra_script])
+main_script = os.path.join(destination_dir, "application", "main.py")
+subprocess.Popen(["python", main_script])
