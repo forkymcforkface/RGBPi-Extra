@@ -73,15 +73,7 @@ def remove_patch():
     os.system('reboot')
 
 def update_and_restart():
-    python_command = "python3"
-    if os.path.exists("/etc/os-release"):
-        with open("/etc/os-release", "r") as f:
-            for line in f:
-                if "bookworm" in line.lower():
-                    python_command = "python3.9"
-                    break
-    
-    subprocess.Popen([python_command, 'updater.py'])
+    subprocess.Popen(['python', 'updater.py'])
     sys.exit()
 
 def get_tweaks_settings_menu(menu_theme, WINDOW_SIZE):
