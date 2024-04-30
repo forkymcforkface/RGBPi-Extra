@@ -28,6 +28,9 @@ B: Offline Installer
 
 1. Download the lastest offline zip [RGBPi-Extra zip installer](https://github.com/forkymcforkface/RGBPi-Extra/releases/)
 2. Extract to your usb drive.
+3. Scan for games
+4. Open rgbpi UI and patch and reboot
+5. Open the rgbpi UI again and go to settings>update. This will get the latest changes.
 
 
 https://github.com/sd2cv/RGBPi-Extra/assets/99993735/d4a69f9b-47b7-4d27-95e5-2555a1844ca1
