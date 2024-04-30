@@ -24,13 +24,13 @@ A: Online Installer
 4. Go to ports in rgbpi ui and run Install RGBPi-Extra
 5. The RGBPi-Extra UI will appear allowing you to apply the patch and restart. All cores and BIOS are included in the initial patch, you will have new system folders in your roms folder after reboot.
 
-B: Offline Installer 
+B: Offline Installer (This will not have the latest minor changes)
 
 1. Download the lastest offline zip [RGBPi-Extra zip installer](https://github.com/forkymcforkface/RGBPi-Extra/releases/)
 2. Extract to your usb drive.
 3. Scan for games
 4. Open rgbpi UI and patch and reboot
-5. Open the rgbpi UI again and go to settings>update. This will get the latest changes.
+5. If you want to get the latest changes, open the rgbpi UI again and go to settings>update. This will get the latest changes.
 
 
 https://github.com/sd2cv/RGBPi-Extra/assets/99993735/d4a69f9b-47b7-4d27-95e5-2555a1844ca1
