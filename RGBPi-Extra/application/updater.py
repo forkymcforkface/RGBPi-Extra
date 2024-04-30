@@ -110,15 +110,17 @@ display_loading_screen(screen, font, "Downloading Update")
 try:
     urllib.request.urlretrieve(archive_url, archive_file)
 except KeyboardInterrupt:
-    display_loading_screen(screen, font, "Download Interrupted")
+    display_loading_screen(screen, font, "Download Interrupted, Rebooting")
     pygame.time.wait(5000) 
-    pygame.quit()
-    exit()
-except Exception as e:
-    display_loading_screen(screen, font, "Check Internet Connection")
+    os.system('reboot')
+except urllib.error.URLError:
+    display_loading_screen(screen, font, "Download Failed, Rebooting")
     pygame.time.wait(5000)  
-    pygame.quit()
-    exit()
+    os.system('reboot')
+except Exception as e:
+    display_loading_screen(screen, font, "Check Internet Connection, Rebooting")
+    pygame.time.wait(5000)  
+    os.system('reboot') 
 
 temp_dir = os.path.join(grandparent_dir, "rgbpitemp")
 os.makedirs(temp_dir, exist_ok=True)
