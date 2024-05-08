@@ -15,14 +15,14 @@ SUDOERS_FILE = '/etc/sudoers.d/010_pi-nopasswd'
 root_enabled = os.path.exists(SUDOERS_FILE)
 patch_enabled = os.path.exists(f'{RGBPI_UI_ROOT}/launcher2.pyc')
 
-WINDOW_SIZE = (320, 240)
+WINDOW_SIZE = (290, 240)
 
 surface = pygame.display.set_mode(WINDOW_SIZE, pygame.FULLSCREEN)
 pygame.mouse.set_visible(False)
 
 menu_theme = pygame_menu.themes.THEME_DARK.copy()
 menu_theme.background_color = (0, 0, 0, 255)
-menu_theme.title_offset = (20, 20)
+menu_theme.title_offset = (3, 20)
 menu_theme.title_font_size = 16
 menu_theme.title_font = pygame_menu.font.FONT_MUNRO
 menu_theme.title_bar_style = pygame_menu.widgets.MENUBAR_STYLE_NONE
@@ -31,7 +31,10 @@ menu_theme.widget_font = pygame_menu.font.FONT_MUNRO
 menu_theme.widget_alignment = pygame_menu.locals.ALIGN_LEFT
 menu_theme.scrollbar_color = (0, 0, 0, 255)
 menu_theme.scrollbar_slider_color = (0, 0, 0, 255)
-menu_theme.scrollbar_thick = (5)
+menu_theme.widget_padding = (1, 2)
+
+
+
 
 menu = pygame_menu.Menu(
     title='RGBPi Extra v.19a',
@@ -108,6 +111,7 @@ def load_menu(error=None):
             menu.add.button('Settings', settings_menu)
             menu.add.vertical_margin(margin=10)
             menu.add.button('Quit', pygame_menu.events.EXIT)
+
     pygame.display.update()
 
 load_menu()
