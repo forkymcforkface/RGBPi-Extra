@@ -31,7 +31,7 @@ def run_script(script_name, menu):
     display_message('Extracting Core...')
     start_time = pygame.time.get_ticks()
     try:
-        subprocess.run(["7z", "x", script_path, "-o" + extracted_folder])
+        subprocess.run(["7z", "x", script_path, "-o" + extracted_folder, "-aoa"])
     except Exception as e:
         print(f"Error extracting core: {e}")
         return
