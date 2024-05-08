@@ -6,7 +6,7 @@ import pygame
 SCRIPTS_FOLDER = 'scripts'
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-WINDOW_SIZE = (320, 240)
+WINDOW_SIZE = (290, 240)
 
 pygame.init()
 screen = pygame.display.set_mode(WINDOW_SIZE)
