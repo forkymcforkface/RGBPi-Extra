@@ -10,6 +10,8 @@ I have found new scripts made by other people and added them to this Repo. I don
 
  **DO NOT ASK QUESTIONS IN DISCORD/TELEGRAM FOR ANY ISSUES YOU MAY RUN INTO.**
  
+ ***IF YOU ARE REIMAGING YOUR SD CARD OR MOVING THE USB DRIVE TO A PI5 YOU NEED TO REMOVE RGBPI-EXTRA FIRST USING THE UNINSTALLER BUILT INTO THE APPLICATION***
+ 
  **Notes**
 - Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues. 
 
