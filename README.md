@@ -18,6 +18,7 @@ I have found new scripts made by other people and added them to this Repo. I don
 ## Installation Options 
 ## DO NOT INSTALL RGBPI-EXTRA IF YOU ONLY USE AN SD CARD or NFS. 
 ## EXTERNAL USB DRIVE INSTALLS ONLY
+## GAMEPAD REQUIRED TO NAVIGATE RGBPI-EXTRA UI
 A: Online Installer
 
 1. Download [Install RGBPi-Extra](https://github.com/forkymcforkface/RGBPi-Extra/blob/main/Install%20RGBPi-Extra.sh)
