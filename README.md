@@ -7,16 +7,13 @@ RGBpi-Extra is a UI that allows you to apply a collection of unofficial scripts 
 
 
 I have found new scripts made by other people and added them to this Repo. I dont take credit for any of them, other then the ones I made. 
-
- **DO NOT ASK QUESTIONS IN DISCORD/TELEGRAM FOR ANY ISSUES YOU MAY RUN INTO.**
  
- ***IF YOU ARE REIMAGING YOUR SD CARD OR MOVING THE USB DRIVE TO A PI5 YOU NEED TO REMOVE RGBPI-EXTRA FIRST USING THE UNINSTALLER BUILT INTO THE APPLICATION***
- 
- **Notes**
-- Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues. 
+ **Important Notes**
+- Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues. DO NOT ASK QUESTIONS IN DISCORD/TELEGRAM FOR ANY ISSUES YOU MAY RUN INTO.
 - DO NOT INSTALL RGBPI-EXTRA IF YOU ONLY USE AN SD CARD or NFS. 
 - EXTERNAL USB DRIVE INSTALLS ONLY
 - GAMEPAD REQUIRED TO NAVIGATE RGBPI-EXTRA UI
+- IF YOU ARE REIMAGING YOUR SD CARD OR MOVING THE USB DRIVE TO A PI5 YOU NEED TO REMOVE RGBPI-EXTRA FIRST USING THE UNINSTALLER BUILT INTO THE APPLICATION
 
 ## Installation Options 
 
