@@ -1,9 +1,7 @@
 
 # RGBPi-Extra
 
-RGBpi-Extra is a UI that allows you to apply a collection of unofficial scripts for [RGBPiOS](https://www.rgb-pi.com/#os), enabling you to quickly and easily install emulators, ports, and libretrocores that haven't been included in RGBPi for various reasons. Additionally, it provides the capability to enable RetroArch features that are disabled by default. These scripts are experimental in nature and may not be fully stable. The concept for creating this repository was inspired by [RetroPie-Extra](https://github.com/Exarkuniv/RetroPie-Extra) and represents a collaborative effort across multiple parties within the RGBPi community.
-
-
+RGBpi-Extra is a UI that allows you to apply a collection of unofficial scripts for [RGBPiOS](https://www.rgb-pi.com/#os), Additionally, it restores retroarch access through core overrides, these are advanced features that require manual configuration. These scripts are experimental in nature and may not be fully stable. The concept for creating this repository was inspired by [RetroPie-Extra](https://github.com/Exarkuniv/RetroPie-Extra) and represents a collaborative effort across multiple parties within the RGBPi community.
 
 
 I have found new scripts made by other people and added them to this Repo. I dont take credit for any of them, other then the ones I made. 
@@ -13,7 +11,6 @@ I have found new scripts made by other people and added them to this Repo. I don
 - DO NOT INSTALL RGBPI-EXTRA IF YOU ONLY USE AN SD CARD or NFS. 
 - EXTERNAL USB DRIVE INSTALLS ONLY
 - GAMEPAD REQUIRED TO NAVIGATE RGBPI-EXTRA UI
-- IF YOU ARE REIMAGING YOUR SD CARD OR MOVING THE USB DRIVE TO A PI5 YOU NEED TO REMOVE RGBPI-EXTRA FIRST USING THE UNINSTALLER BUILT INTO THE APPLICATION
 
 ## Installation Options 
 
@@ -23,30 +20,20 @@ A: Online Installer
 2. Place it in your /roms/ports folder
 3. Scan for new games in the rgbpi ui
 4. Go to ports in rgbpi ui and run Install RGBPi-Extra
-5. The RGBPi-Extra UI will appear allowing you to apply the patch and restart. All cores and BIOS are included in the initial patch, you will have new system folders in your roms folder after reboot.
+5. The RGBPi-Extra UI will appear allowing you to apply make any tweaks
 
 B: Offline Installer (This will not have the latest minor changes)
 
 1. Download the lastest offline zip [RGBPi-Extra zip installer](https://github.com/forkymcforkface/RGBPi-Extra/releases/)
 2. Extract to your usb drive.
 3. Scan for games
-4. Open rgbpi UI and patch and reboot
+4. Open rgbpi UI
 5. If you want to get the latest changes, open the rgbpi UI again and go to settings>update.
-
-
-https://github.com/sd2cv/RGBPi-Extra/assets/99993735/d4a69f9b-47b7-4d27-95e5-2555a1844ca1
-
-
-
-
-
 
 ## Usage
 
 After installing **RGBPi-Extra** you will now have a RGBPi-Extra folder within ports and within that the RGBPi-Extra launcher
 
-#### Retroarch Settings 
-This allows you to add retroarch features that are disabled by default by RGBPi-OS. Currently only boolean shows up in the UI, but you can add any global configs that you would like to /application/data/tweaks/gobal_configs.ini
 #### Update Cores
 This allows you to updates cores to the lateset manually compiled version. it also allows you replace the nes core with mesen. There is a restore all cores button that will restore all default os4 core. 
 #### Tweaks
@@ -54,20 +41,12 @@ A collection of scripts to modify RGBPi OS settings, Bullseye settings or just g
 #### Settings
 Update or Removal of RGBPi-Extra, You will need to rescan for games after updating.
 
-IF YOU ARE REIMAGING YOUR SD CARD YOU MUST REMOVE RGBPI-EXTRA BEFORE DOING SO.
-
-
 ## Updates
 
 1. Go to settings
 2. Press update and allow the package to download
 3. Press patch and reboot
 4. ReScan for games
-
-## Removal
-
-To remove the patch open RGBPi-Extra ui, go to settings and select remove. This is required prior to reimaging your SD card if you are doing so.
-
 
 If there is a [X] that means it Installs and Plays. 
 I'll have a note at the end with some Info about it. if there is NO note or  [ ] **PLEASE LET ME KNOW** if it works for you 
