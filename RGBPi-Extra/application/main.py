@@ -1,9 +1,9 @@
 import os
 import pygame
 import pygame_menu
-from retroarch_settings import get_retroarch_settings_menu
 from rgbpi_tweaks import get_rgbpi_tweaks_menu
-from core_updates import get_core_updates_menu
+from core_updater import get_core_updater_menu
+from core_swapper import get_core_swap_menu
 from tweaks_settings import get_tweaks_settings_menu
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -27,6 +27,7 @@ menu_theme.widget_alignment = pygame_menu.locals.ALIGN_LEFT
 menu_theme.scrollbar_color = (0, 0, 0, 255)
 menu_theme.scrollbar_slider_color = (0, 0, 0, 255)
 menu_theme.widget_padding = (1, 2)
+menu_theme.title_alignment = pygame_menu.locals.ALIGN_RIGHT  # Align title to the right
 
 menu = pygame_menu.Menu(
     title='RGBPi Extra v.19a',
@@ -39,22 +40,14 @@ menu = pygame_menu.Menu(
 
 def load_menu(error=None):
     menu.clear()
-    if error:
-        if error == 'patch':
-            menu.add.label('Error applying patch!', wordwrap=False)
-        menu.add.vertical_margin(margin=10)
-        menu.add.button('OK', load_menu)
-    else:
-        retroarch_settings_menu = get_retroarch_settings_menu(menu_theme, WINDOW_SIZE)
-        rgbpi_tweaks_menu = get_rgbpi_tweaks_menu(menu_theme, WINDOW_SIZE)
-        settings_menu = get_tweaks_settings_menu(menu_theme, WINDOW_SIZE)                
-        menu.add.button('Retroarch Settings', retroarch_settings_menu)
-        menu.add.button('Core Updater', get_core_updates_menu(menu_theme, WINDOW_SIZE))
-        menu.add.button('Tweaks', rgbpi_tweaks_menu)
-        menu.add.button('Settings', settings_menu)
-        menu.add.vertical_margin(margin=10)
-        menu.add.button('Quit', pygame_menu.events.EXIT)
-
+    rgbpi_tweaks_menu = get_rgbpi_tweaks_menu(menu_theme, WINDOW_SIZE)
+    settings_menu = get_tweaks_settings_menu(menu_theme, WINDOW_SIZE)                
+    menu.add.button('Tweaks', rgbpi_tweaks_menu)
+    menu.add.button('Core Swapper (do not use)', get_core_swap_menu(menu_theme, WINDOW_SIZE))    
+    menu.add.button('Core Updater', get_core_updater_menu(menu_theme, WINDOW_SIZE))
+    menu.add.button('Settings', settings_menu)
+    menu.add.vertical_margin(margin=10)
+    menu.add.button('Quit', pygame_menu.events.EXIT)
     pygame.display.update()
 
 load_menu()
