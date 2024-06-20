@@ -76,7 +76,7 @@ def restore_default_cores():
             except Exception as e:
                 print(f"Error restoring core {so_file}: {e}")
 
-def get_core_updates_menu(menu_theme, WINDOW_SIZE):
+def get_core_updater_menu(menu_theme, WINDOW_SIZE):
     menu = pygame_menu.Menu(
         title='',
         theme=menu_theme,
