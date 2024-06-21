@@ -74,7 +74,5 @@ with subprocess.Popen(['df', '-P', grandparent_dir], stdout=subprocess.PIPE) as 
     output = proc.stdout.readlines()
     mount_point = output[1].decode().split()[5]
 
-remove_patch()
-
 main_script = os.path.join(destination_dir, "application", "main.py")
 subprocess.Popen(["python", main_script])
