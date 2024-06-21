@@ -30,7 +30,7 @@ menu_theme.widget_padding = (1, 2)
 menu_theme.title_alignment = pygame_menu.locals.ALIGN_RIGHT  # Align title to the right
 
 menu = pygame_menu.Menu(
-    title='RGBPi Extra v.19a',
+    title='RGBPi Extra v.20a',
     theme=menu_theme,
     joystick_enabled=True,
     width=WINDOW_SIZE[0],
