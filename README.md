@@ -19,7 +19,7 @@ A: Online Installer
 1. Download [Install RGBPi-Extra](https://github.com/forkymcforkface/RGBPi-Extra/blob/main/Install%20RGBPi-Extra.sh)
 2. Place it in your /roms/ports folder
 3. Scan for new games in the rgbpi ui
-4. Go to ports in rgbpi ui and run Install RGBPi-Extra
+4. Go to ports in rgbpi ui and run RGBPi-Extra
 5. The RGBPi-Extra UI will appear allowing you to apply make any tweaks
 
 B: Offline Installer (This will not have the latest minor changes)
