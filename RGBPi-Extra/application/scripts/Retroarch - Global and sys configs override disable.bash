@@ -10,7 +10,7 @@ backup_path="/opt/retroarch/retroarch.bak"
 # Check if the backup exists
 if [ -f "$backup_path" ]; then
   echo "Backup found. Restoring backup..."
-  cp -vf "$backup_path" "$retroarch_path"
+  mv -vf "$backup_path" "$retroarch_path"
 else
   echo "Backup not found. Cannot restore."
 fi
