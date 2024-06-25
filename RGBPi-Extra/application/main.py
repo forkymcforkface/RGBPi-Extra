@@ -48,16 +48,22 @@ def apply_patch():
         shutil.copytree('data/shaders', '/root/.config/retroarch/shaders', dirs_exist_ok=True)
         shutil.copytree('data/cores', '/opt/retroarch/cores', dirs_exist_ok=True)
 
+        # Append cores.cfg without filtering
         with open('data/cores.cfg', 'r') as source_file:
             data_to_append = source_file.read()
-        with open('/opt/rgbpi/ui/data/cores.cfg', 'r+') as dest_file:
-            lines = dest_file.readlines()
-            dest_file.seek(0)
-            for line in lines:
-                if not line.startswith(('melonds_', 'yabasanshiro_')):
-                    dest_file.write(line)
+        with open('/opt/rgbpi/ui/data/cores.cfg', 'a') as dest_file:
             dest_file.write(data_to_append)
-            dest_file.truncate()
+
+        # Backup current retroarch and replace with new one
+        retroarch_path = '/opt/retroarch/retroarch'
+        backup_path = retroarch_path + '.bak'
+        if os.path.exists(backup_path):
+            os.remove(retroarch_path)
+        else:
+            shutil.move(retroarch_path, backup_path)
+        
+        shutil.copy('data/retroarch', retroarch_path)
+        os.chmod(retroarch_path, 0o777)
 
         script_dir = os.path.dirname(os.path.abspath(__file__))
         drive = script_dir.split(os.sep)[2]
@@ -66,6 +72,7 @@ def apply_patch():
         source_dir = os.path.join(os.path.dirname(__file__), 'data', 'drive')
         shutil.copytree(source_dir, media_mountpoint, dirs_exist_ok=True)
 
+        # Create or update the flag file with the current version
         with open(PATCH_FLAG_FILE, 'w') as f:
             f.write(VERSION)
     except Exception as e:
@@ -114,5 +121,5 @@ if __name__ == '__main__':
         if menu.is_enabled():
             menu.update(events)
             menu.draw(surface)
-        time.sleep(0.01) 
+        time.sleep(0.01)  # Add a short delay to reduce CPU usage
         pygame.display.update()
