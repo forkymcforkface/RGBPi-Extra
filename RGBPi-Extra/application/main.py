@@ -102,7 +102,7 @@ def load_menu(error=None):
             settings_menu = get_tweaks_settings_menu(menu_theme, WINDOW_SIZE)                
             menu.add.button('Retroarch Settings', retroarch_settings_menu)
             menu.add.button('Core Updater', get_core_updater_menu(menu_theme, WINDOW_SIZE))
-            menu.add.button('Core Swapper', get_core_swap_menu(menu_theme, WINDOW_SIZE))
+            menu.add.button('Core Swapper (Experimental)', get_core_swap_menu(menu_theme, WINDOW_SIZE))
             menu.add.button('Tweaks', rgbpi_tweaks_menu)
             menu.add.button('Settings', settings_menu)
         menu.add.vertical_margin(margin=10)
