@@ -13,6 +13,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 RGBPI_UI_ROOT = '/opt/rgbpi/ui'
 PATCH_FLAG_FILE = os.path.join(RGBPI_UI_ROOT, 'patch_applied.flag')
+LAUNCHER_FILE = os.path.join(RGBPI_UI_ROOT, 'launcher.py')
 VERSION = 'v.20a'
 
 WINDOW_SIZE = (290, 240)
@@ -65,6 +66,12 @@ def apply_patch():
         shutil.copy('data/retroarch', retroarch_path)
         os.chmod(retroarch_path, 0o777)
 
+        # Copy launcher.py to RGBPI_UI_ROOT and rename launcher.pyc to launcher2.pyc
+        shutil.copy('data/launcher.py', LAUNCHER_FILE)
+        launcher_pyc_path = os.path.join(RGBPI_UI_ROOT, 'launcher.pyc')
+        if os.path.exists(launcher_pyc_path):
+            os.rename(launcher_pyc_path, os.path.join(RGBPI_UI_ROOT, 'launcher2.pyc'))
+
         script_dir = os.path.dirname(os.path.abspath(__file__))
         drive = script_dir.split(os.sep)[2]
         media_mountpoint = os.path.join('/', 'media', drive)
@@ -88,7 +95,7 @@ def load_menu(error=None):
         menu.add.button('OK', load_menu)
     else:
         patch_needed = True
-        if os.path.exists(PATCH_FLAG_FILE):
+        if os.path.exists(PATCH_FLAG_FILE) and os.path.exists(LAUNCHER_FILE):
             with open(PATCH_FLAG_FILE, 'r') as f:
                 applied_version = f.read().strip()
                 if applied_version >= VERSION:
