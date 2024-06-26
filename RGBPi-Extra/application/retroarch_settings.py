@@ -46,7 +46,7 @@ def get_retroarch_settings_menu(menu_theme, WINDOW_SIZE):
                 value == 'true',
                 toggle_boolean_parameter,
                 toggleswitch_id=key,
-                width=50,
+                width=40,
                 slider_thickness=0,
                 single_click=True,
                 key=key,
