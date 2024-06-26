@@ -6,7 +6,7 @@ import time
 from retroarch_settings import get_retroarch_settings_menu
 from rgbpi_tweaks import get_rgbpi_tweaks_menu
 from core_updater import get_core_updater_menu
-from core_swapper import get_core_swap_menu
+from system_manager import get_main_menu
 from tweaks_settings import get_tweaks_settings_menu
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -102,7 +102,7 @@ def load_menu(error=None):
             settings_menu = get_tweaks_settings_menu(menu_theme, WINDOW_SIZE)                
             menu.add.button('Retroarch Settings', retroarch_settings_menu)
             menu.add.button('Core Updater', get_core_updater_menu(menu_theme, WINDOW_SIZE))
-            menu.add.button('Core Swapper (Experimental)', get_core_swap_menu(menu_theme, WINDOW_SIZE))
+            menu.add.button('System Manager', get_main_menu(menu_theme, WINDOW_SIZE))
             menu.add.button('Tweaks', rgbpi_tweaks_menu)
             menu.add.button('Settings', settings_menu)
         menu.add.vertical_margin(margin=10)
