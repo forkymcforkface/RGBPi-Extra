@@ -26,16 +26,15 @@ def remove_patch():
         config['cfg']['adv_mode'] = 'user'
         with open(os.path.join(RGBPI_ROOT, 'config.ini'), 'w') as config_file:
             config.write(config_file)
-        
         shutil.copy('data/retroarch.cfg', '/root/.config/retroarch/retroarch.cfg')
     except Exception as e:
-        pass
+        print(f"An error occurred: {e}")
 
     restore_default_systems()
     restore_default_cores()
 
     os.system('reboot')
-    
+
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 WINDOW_SIZE = (290, 240)
@@ -51,32 +50,40 @@ def display_message(message):
     screen.blit(text, text_rect)
     pygame.display.flip()
 
-def update_and_restart():
+def update_and_restart(menu):
     display_message("Checking Internet Connection...")
     pygame.display.flip()
-    
+
+    python_exec = 'python'
+    try:
+        with open('/etc/os-release') as f:
+            os_release = f.read()
+        if 'bookworm' in os_release:
+            python_exec = 'python3.9'
+    except Exception:
+        pass
+
     try:
         urllib.request.urlopen('http://www.github.com', timeout=1)
+        subprocess.Popen([python_exec, 'updater.py'])
+        sys.exit()
     except urllib.error.URLError:
-        display_message("Check Internet Connection")
+        display_message("Check Your Internet Connection")
         pygame.display.flip()
         time.sleep(5)
-        return
-    
-    subprocess.Popen(['python3.9', 'updater.py'])
-    sys.exit()
+        menu.reset(1)
 
-def get_tweaks_settings_menu(menu_theme, WINDOW_SIZE):
+def get_tweaks_settings_menu(menu_theme, window_size):
     menu = pygame_menu.Menu(
         title='',
         theme=menu_theme,
         joystick_enabled=True,
-        width=WINDOW_SIZE[0],
-        height=WINDOW_SIZE[1],
+        width=window_size[0],
+        height=window_size[1],
         mouse_visible_update=False,
     )
 
-    menu.add.button('Update to latest version', update_and_restart)
+    menu.add.button('Update to latest version', lambda: update_and_restart(menu))
     menu.add.button('Remove RGBPi Extra patches and reboot', remove_patch)
     menu.add.button('Return to menu', pygame_menu.events.BACK)
 
