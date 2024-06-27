@@ -59,7 +59,7 @@ def restore_default_systems():
         clean_dats()
         reset_systems_cores()
         os.remove(BACKUP_SYSTEMS_FILE)
-        display_message('Default systems restored', 2)
+        display_message('Default systems restored, scan for games to clear', 2)
     else:
         display_message('No backup found', 2)
 
@@ -160,7 +160,7 @@ def install_core(name):
     update_systems_cores(selected_system['system'], selected_system['newcore'])
     append_system_data(selected_system['system'], selected_system)
     
-    display_message('Core installed successfully', 2)
+    display_message('Core installed successfully, Scan for games to load', 2)
 
 def get_systems_from_file(file_path):
     systems = []
