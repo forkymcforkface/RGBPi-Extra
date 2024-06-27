@@ -61,6 +61,7 @@ def apply_patch():
             shutil.move(retroarch_path, backup_path)
         
         shutil.copy('data/retroarch', retroarch_path)
+        shutil.copy('data/retroarch_31khz', retroarch_path)
         os.chmod(retroarch_path, 0o777)
 
         shutil.copy('data/launcher.py', LAUNCHER_FILE)
