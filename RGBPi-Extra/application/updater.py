@@ -25,7 +25,7 @@ BLACK = (0, 0, 0)
 
 repo_owner = "forkymcforkface"
 repo_name = "RGBPi-Extra"
-branch = "main"
+branch = "dev"
 path = "RGBPi-Extra"
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
