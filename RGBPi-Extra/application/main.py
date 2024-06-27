@@ -98,7 +98,7 @@ def load_menu(error=None):
                     patch_needed = False
 
         if patch_needed:
-            menu.add.button('Install RGBPi-Extra, and reboot', apply_patch)
+            menu.add.button('Install RGBPi-Extra and reboot', apply_patch)
         else:
             retroarch_settings_menu = get_retroarch_settings_menu(menu_theme, WINDOW_SIZE)
             rgbpi_tweaks_menu = get_rgbpi_tweaks_menu(menu_theme, WINDOW_SIZE)
