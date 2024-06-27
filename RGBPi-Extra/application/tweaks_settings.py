@@ -3,12 +3,39 @@ import shutil
 import pygame
 import pygame_menu
 import subprocess
-import glob
 import sys
 import configparser
 import urllib.request
 import time
 
+from system_manager import restore_default_systems
+from core_updater import restore_default_cores
+
+RGBPI_ROOT = '/opt/rgbpi/ui'
+RA_ROOT = '/opt/retroarch'
+
+def remove_patch():
+    try:
+        os.remove(os.path.join(RGBPI_ROOT, 'launcher.py'))
+        os.rename(os.path.join(RGBPI_ROOT, 'launcher2.pyc'), os.path.join(RGBPI_ROOT, 'launcher.pyc'))
+        os.remove(os.path.join(RGBPI_ROOT, 'patch_applied.flag'))
+        os.remove(os.path.join(RA_ROOT, 'retroarch'))
+        os.rename(os.path.join(RA_ROOT, 'retroarch.bak'), os.path.join(RA_ROOT, 'retroarch'))
+        config = configparser.ConfigParser()
+        config.read(os.path.join(RGBPI_ROOT, 'config.ini'))
+        config['cfg']['adv_mode'] = 'user'
+        with open(os.path.join(RGBPI_ROOT, 'config.ini'), 'w') as config_file:
+            config.write(config_file)
+        
+        shutil.copy('data/retroarch.cfg', '/root/.config/retroarch/retroarch.cfg')
+    except Exception as e:
+        pass
+
+    restore_default_systems()
+    restore_default_cores()
+
+    os.system('reboot')
+    
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 WINDOW_SIZE = (290, 240)
@@ -36,7 +63,7 @@ def update_and_restart():
         time.sleep(5)
         return
     
-    subprocess.Popen(['python', 'updater.py'])
+    subprocess.Popen(['python3.9', 'updater.py'])
     sys.exit()
 
 def get_tweaks_settings_menu(menu_theme, WINDOW_SIZE):
@@ -50,6 +77,7 @@ def get_tweaks_settings_menu(menu_theme, WINDOW_SIZE):
     )
 
     menu.add.button('Update to latest version', update_and_restart)
+    menu.add.button('Remove RGBPi Extra patches and reboot', remove_patch)
     menu.add.button('Return to menu', pygame_menu.events.BACK)
 
     return menu
