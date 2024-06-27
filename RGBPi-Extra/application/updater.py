@@ -7,7 +7,6 @@ import pygame
 import glob
 from tweaks_settings import remove_patch
 from main import apply_patch
-remove_patch(reboot=False)
 
 def display_loading_screen(screen, font, message):
     screen.fill(BLACK)
