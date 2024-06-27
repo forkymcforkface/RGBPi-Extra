@@ -25,8 +25,18 @@ BLACK = (0, 0, 0)
 
 repo_owner = "forkymcforkface"
 repo_name = "RGBPi-Extra"
-branch = "dev"
+branch = "main"
 path = "RGBPi-Extra"
+
+try:
+    with open('/etc/os-release') as f:
+        os_release = f.read()
+    if 'bookworm' in os_release:
+        branch = "pi-5"
+except Exception:
+    pass
+
+
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.abspath(os.path.join(script_dir, os.pardir))
