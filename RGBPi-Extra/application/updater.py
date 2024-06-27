@@ -87,7 +87,8 @@ with subprocess.Popen(['df', '-P', grandparent_dir], stdout=subprocess.PIPE) as 
 
 display_loading_screen(screen, font, "Update Complete")
 pygame.time.wait(3000)
-remove_patch()
+
+remove_patch(reboot=False)
 
 python_exec = 'python'
 try:
