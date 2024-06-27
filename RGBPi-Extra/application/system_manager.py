@@ -25,6 +25,72 @@ def display_message(message, duration=0):
     if duration > 0:
         time.sleep(duration)
 
+def get_systems_from_cores():
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    drive = script_dir.split(os.sep)[2]
+    systems_cores_file = f'/media/{drive}/gameconfig/sys_override/systems_cores.cfg'
+    systems = []
+    cores = []
+    if os.path.exists(systems_cores_file):
+        with open(systems_cores_file, 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                if '=' in line:
+                    system, core = line.split('=')
+                    systems.append(system.strip())
+                    cores.append(core.strip())
+    return systems, cores
+
+def restore_default_systems():
+    def clean_dats():
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        drive = script_dir.split(os.sep)[2]
+        dats_folder = f'/media/{drive}/dats/'
+        systems_to_remove, _ = get_systems_from_cores()
+
+        for dat_file in ['games.dat', 'favorites.dat']:
+            dat_file_path = os.path.join(dats_folder, dat_file)
+            if os.path.exists(dat_file_path):
+                with open(dat_file_path, 'r') as file:
+                    lines = file.readlines()
+
+                with open(dat_file_path, 'w') as file:
+                    header = lines[0]
+                    file.write(header)
+                    for line in lines[1:]:
+                        system = line.strip().split(',')[2].strip('"')
+                        if system not in systems_to_remove:
+                            file.write(line)
+
+    def delete_cores():
+        _, cores_to_delete = get_systems_from_cores()
+        for core in cores_to_delete:
+            core_path = f'/opt/retroarch/cores/{core}'
+            if os.path.exists(core_path):
+                os.remove(core_path)
+
+    def reset_systems_cores():
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        drive = script_dir.split(os.sep)[2]
+        systems_cores_file = f'/media/{drive}/gameconfig/sys_override/systems_cores.cfg'
+        if os.path.exists(systems_cores_file):
+            with open(systems_cores_file, 'w') as file:
+                file.write(SYSTEMS_CORES_FILE_TEMPLATE)
+
+    if os.path.exists(BACKUP_SYSTEMS_FILE):
+        shutil.copy(BACKUP_SYSTEMS_FILE, DESTINATION_SYSTEMS_FILE)
+        clean_dats()
+        delete_cores()
+        reset_systems_cores()
+        os.remove(BACKUP_SYSTEMS_FILE)
+        display_message('Default systems restored', 2)
+    else:
+        display_message('No backup found', 2)
+
+def backup_systems_file():
+    if not os.path.exists(BACKUP_SYSTEMS_FILE):
+        shutil.copy(DESTINATION_SYSTEMS_FILE, BACKUP_SYSTEMS_FILE)
+
 def load_systems(file_path):
     systems = {}
     with open(file_path, 'r') as file:
@@ -48,62 +114,6 @@ def load_systems(file_path):
                 'romfolder': romfolder
             }
     return systems
-
-def backup_systems_file():
-    if not os.path.exists(BACKUP_SYSTEMS_FILE):
-        shutil.copy(DESTINATION_SYSTEMS_FILE, BACKUP_SYSTEMS_FILE)
-
-def restore_default_systems():
-    if os.path.exists(BACKUP_SYSTEMS_FILE):
-        shutil.copy(BACKUP_SYSTEMS_FILE, DESTINATION_SYSTEMS_FILE)
-        clean_dats()
-        reset_systems_cores()
-        os.remove(BACKUP_SYSTEMS_FILE)
-        display_message('Default systems restored, scan for games to clear', 2)
-    else:
-        display_message('No backup found', 2)
-
-def reset_systems_cores():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    drive = script_dir.split(os.sep)[2]
-    systems_cores_file = f'/media/{drive}/gameconfig/sys_override/systems_cores.cfg'
-    if os.path.exists(systems_cores_file):
-        with open(systems_cores_file, 'w') as file:
-            file.write(SYSTEMS_CORES_FILE_TEMPLATE)
-
-def get_systems_from_cores():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    drive = script_dir.split(os.sep)[2]
-    systems_cores_file = f'/media/{drive}/gameconfig/sys_override/systems_cores.cfg'
-    systems = []
-    if os.path.exists(systems_cores_file):
-        with open(systems_cores_file, 'r') as file:
-            lines = file.readlines()
-            for line in lines:
-                if '=' in line:
-                    system = line.split('=')[0].strip()
-                    systems.append(system)
-    return systems
-
-def clean_dats():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    drive = script_dir.split(os.sep)[2]
-    dats_folder = f'/media/{drive}/dats/'
-    systems_to_remove = get_systems_from_cores()
-
-    for dat_file in ['games.dat', 'favorites.dat']:
-        dat_file_path = os.path.join(dats_folder, dat_file)
-        if os.path.exists(dat_file_path):
-            with open(dat_file_path, 'r') as file:
-                lines = file.readlines()
-            
-            with open(dat_file_path, 'w') as file:
-                header = lines[0]
-                file.write(header)
-                for line in lines[1:]:
-                    system = line.strip().split(',')[2].strip('"')
-                    if system not in systems_to_remove:
-                        file.write(line)
 
 def system_exists_in_cfg(system, systems_cores_file):
     if not os.path.exists(systems_cores_file):
@@ -159,8 +169,16 @@ def install_core(name):
     
     update_systems_cores(selected_system['system'], selected_system['newcore'])
     append_system_data(selected_system['system'], selected_system)
-    
-    display_message('Core installed successfully, Scan for games to load', 2)
+    try:
+        copy_core_file(selected_system['newcore'])
+        display_message('Core installed successfully', 2)
+    except FileNotFoundError:
+        display_message('Core file not found', 2)
+
+def copy_core_file(core):
+    source_path = f'data/cores/{core}'
+    destination_path = f'/opt/retroarch/cores/{core}'
+    shutil.copy2(source_path, destination_path)
 
 def get_systems_from_file(file_path):
     systems = []
