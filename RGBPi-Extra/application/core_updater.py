@@ -62,7 +62,7 @@ def run_script(script_name, menu):
 
 def restore_default_cores():
     cores_directory = "/opt/retroarch/cores"
-    display_message('Restoring Default Cores')
+    display_message('Restoring default cores')
     start_time = pygame.time.get_ticks()
     while pygame.time.get_ticks() - start_time < 3000:
         pass
