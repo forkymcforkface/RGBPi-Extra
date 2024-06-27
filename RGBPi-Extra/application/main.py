@@ -75,12 +75,12 @@ def apply_patch():
         source_dir = os.path.join(os.path.dirname(__file__), 'data', 'drive')
         shutil.copytree(source_dir, media_mountpoint, dirs_exist_ok=True)
 
-
         with open(PATCH_FLAG_FILE, 'w') as f:
             f.write(VERSION)
     except Exception as e:
         error = 'patch'
     load_menu(error=error)
+    os.system('reboot')
 
 def load_menu(error=None):
     menu.clear()
@@ -98,7 +98,7 @@ def load_menu(error=None):
                     patch_needed = False
 
         if patch_needed:
-            menu.add.button('Install RGBPi-Extra', apply_patch)
+            menu.add.button('Install RGBPi-Extra and reboot', apply_patch)
         else:
             retroarch_settings_menu = get_retroarch_settings_menu(menu_theme, WINDOW_SIZE)
             rgbpi_tweaks_menu = get_rgbpi_tweaks_menu(menu_theme, WINDOW_SIZE)
@@ -109,7 +109,8 @@ def load_menu(error=None):
             menu.add.button('Tweaks', rgbpi_tweaks_menu)
             menu.add.button('Settings', settings_menu)
         menu.add.vertical_margin(margin=10)
-        menu.add.button('Quit', pygame_menu.events.EXIT)
+        if not patch_needed:
+            menu.add.button('Quit', pygame_menu.events.EXIT)
 
     pygame.display.update()
 

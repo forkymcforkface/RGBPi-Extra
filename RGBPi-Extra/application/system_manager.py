@@ -84,8 +84,6 @@ def restore_default_systems():
         reset_systems_cores()
         os.remove(BACKUP_SYSTEMS_FILE)
         display_message('Default systems restored', 2)
-    else:
-        display_message('No backup found', 2)
 
 def backup_systems_file():
     if not os.path.exists(BACKUP_SYSTEMS_FILE):

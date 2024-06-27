@@ -5,6 +5,8 @@ import subprocess
 import urllib.request
 import pygame
 import glob
+from tweaks_settings import remove_patch
+from main import apply_patch
 
 def display_loading_screen(screen, font, message):
     screen.fill(BLACK)
@@ -25,8 +27,16 @@ BLACK = (0, 0, 0)
 
 repo_owner = "forkymcforkface"
 repo_name = "RGBPi-Extra"
-branch = "dev"
+branch = "main"
 path = "RGBPi-Extra"
+
+try:
+    with open('/etc/os-release') as f:
+        os_release = f.read()
+    if 'bookworm' in os_release:
+        branch = "pi-5"
+except Exception:
+    pass
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.abspath(os.path.join(script_dir, os.pardir))
@@ -43,16 +53,16 @@ try:
     urllib.request.urlretrieve(archive_url, archive_file)
 except KeyboardInterrupt:
     display_loading_screen(screen, font, "Download Interrupted, Rebooting")
-    pygame.time.wait(5000) 
+    pygame.time.wait(5000)
     os.system('reboot')
 except urllib.error.URLError:
     display_loading_screen(screen, font, "Download Failed, Rebooting")
-    pygame.time.wait(5000)  
+    pygame.time.wait(5000)
     os.system('reboot')
 except Exception as e:
     display_loading_screen(screen, font, "Check Internet Connection, Rebooting")
-    pygame.time.wait(5000)  
-    os.system('reboot') 
+    pygame.time.wait(5000)
+    os.system('reboot')
 
 temp_dir = os.path.join(grandparent_dir, "rgbpitemp")
 os.makedirs(temp_dir, exist_ok=True)
@@ -74,6 +84,19 @@ with subprocess.Popen(['df', '-P', grandparent_dir], stdout=subprocess.PIPE) as 
     output = proc.stdout.readlines()
     mount_point = output[1].decode().split()[5]
 
-display_loading_screen(screen, font, "Update Complete, Rebooting")
-pygame.time.wait(5000)  
-os.system('reboot')
+display_loading_screen(screen, font, "Update Complete")
+pygame.time.wait(3000)
+
+remove_patch(reboot=False)
+
+python_exec = 'python'
+try:
+    with open('/etc/os-release') as f:
+        os_release = f.read()
+    if 'bookworm' in os_release:
+        python_exec = 'python3.9'
+except Exception as e:
+    print(f"An error occurred while determining the OS version: {e}")
+
+main_script = os.path.join(destination_dir, "application", "main.py")
+subprocess.Popen([python_exec, main_script])

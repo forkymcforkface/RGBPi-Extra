@@ -76,7 +76,7 @@ def update_core(core_name, core_ext):
             pass
 
 def restore_default_cores():
-    display_message('Restoring default cores')
+    display_message('Restoring')
     start_time = pygame.time.get_ticks()
     while pygame.time.get_ticks() - start_time < 3000:
         pass
