@@ -1,11 +1,11 @@
-#To add more cores, just zip them with 7z and place them in the cores folder. It will automatically show up in the RGBPi-Extra ui on next launch.
 import os
 import pygame_menu
 import subprocess
 import pygame
 import shutil
 
-CORES_FOLDER = 'cores'
+SOURCE_CORES_FOLDER = 'cores'
+DESTINATION_CORES_FOLDER = '/opt/retroarch/cores'
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 WINDOW_SIZE = (290, 240)
@@ -25,51 +25,65 @@ def display_message(message, loading_text=''):
         screen.blit(loading, loading_rect)
     pygame.display.flip()
 
-def run_script(script_name, menu):
-    script_path = os.path.join(CORES_FOLDER, f"{script_name}.7z")
-    extracted_folder = "/root/temp"
-    display_message('Extracting Core...')
-    start_time = pygame.time.get_ticks()
-    try:
+def extract_file(script_path, extracted_folder):
+    if script_path.endswith('.7z'):
         subprocess.run(["7z", "x", script_path, "-o" + extracted_folder, "-aoa"])
-    except Exception as e:
-        print(f"Error extracting core: {e}")
-        return
-    
-    while pygame.time.get_ticks() - start_time < 3000:
-        pass
+    elif script_path.endswith('.zip'):
+        subprocess.run(["unzip", "-o", script_path, "-d", extracted_folder])
 
-    current_core_file = os.path.join("/opt/retroarch/cores", f"{script_name}.so")
-    bak_file = current_core_file + '.bak'
-    if not os.path.exists(bak_file):
+def update_core(core_name, core_ext):
+    extracted_folder = "/root/temp"
+    if core_ext.lower() in ['.7z', '.zip']:
+        core_path = os.path.join(SOURCE_CORES_FOLDER, f"{core_name}{core_ext}")
+        display_message('Extracting Core...')
+        start_time = pygame.time.get_ticks()
         try:
-            os.rename(current_core_file, bak_file)
+            extract_file(core_path, extracted_folder)
         except Exception as e:
-            print(f"Error creating .bak file: {e}")
+            print(f"Error extracting core: {e}")
+            return
+        while pygame.time.get_ticks() - start_time < 3000:
+            pass
+        extracted_core_path = os.path.join(extracted_folder, f"{core_name}.so")
+    elif core_ext.lower() == '.so':
+        extracted_core_path = os.path.join(SOURCE_CORES_FOLDER, f"{core_name}.so")
+
+    destination_core_file = os.path.join(DESTINATION_CORES_FOLDER, f"{core_name}.so")
+    bak_file = destination_core_file + '.bak'
+
+    if os.path.exists(destination_core_file):
+        if not os.path.exists(bak_file):
+            try:
+                os.rename(destination_core_file, bak_file)
+            except Exception as e:
+                print(f"Error creating .bak file: {e}")
+                return
+
+        try:
+            shutil.copy(extracted_core_path, destination_core_file)
+        except Exception as e:
+            print(f"Error copying core to {DESTINATION_CORES_FOLDER} folder: {e}")
             return
 
-    extracted_core_path = os.path.join(extracted_folder, f"{script_name}.so")
-    try:
-        shutil.move(extracted_core_path, current_core_file)
-    except Exception as e:
-        print(f"Error moving core to /opt/retroarch/cores folder: {e}")
-        return
-
-    display_message('Moving Core...')
-    start_time = pygame.time.get_ticks()
-    while pygame.time.get_ticks() - start_time < 2000:
-        pass
+        display_message('Updating Core...')
+        start_time = pygame.time.get_ticks()
+        while pygame.time.get_ticks() - start_time < 2000:
+            pass
+    else:
+        display_message('No matching core to update')
+        start_time = pygame.time.get_ticks()
+        while pygame.time.get_ticks() - start_time < 2000:
+            pass
 
 def restore_default_cores():
-    cores_directory = "/opt/retroarch/cores"
     display_message('Restoring default cores')
     start_time = pygame.time.get_ticks()
     while pygame.time.get_ticks() - start_time < 3000:
         pass
-    
-    for file in os.listdir(cores_directory):
+
+    for file in os.listdir(DESTINATION_CORES_FOLDER):
         if file.endswith(".bak"):
-            bak_file = os.path.join(cores_directory, file)
+            bak_file = os.path.join(DESTINATION_CORES_FOLDER, file)
             so_file = bak_file[:-4]
             try:
                 os.rename(bak_file, so_file)
@@ -85,11 +99,11 @@ def get_core_updater_menu(menu_theme, WINDOW_SIZE):
         height=WINDOW_SIZE[1],
         mouse_visible_update=False,
     )
-    script_files = sorted(f for f in os.listdir(CORES_FOLDER) if os.path.isfile(os.path.join(CORES_FOLDER, f)))
-    for script_file in script_files:
-        script_name, script_ext = os.path.splitext(script_file)
-        if script_ext.lower() == '.7z':
-            menu.add.button(script_name, run_script, script_name, menu)
+    core_files = sorted(f for f in os.listdir(SOURCE_CORES_FOLDER) if os.path.isfile(os.path.join(SOURCE_CORES_FOLDER, f)))
+    for core_file in core_files:
+        core_name, core_ext = os.path.splitext(core_file)
+        if core_ext.lower() in ['.7z', '.zip', '.so']:
+            menu.add.button(core_name, update_core, core_name, core_ext)
     menu.add.button('Restore Default Cores', restore_default_cores)
     menu.add.button('Return to menu', pygame_menu.events.BACK)
     return menu
