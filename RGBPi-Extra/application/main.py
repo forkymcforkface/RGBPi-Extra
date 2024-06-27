@@ -47,8 +47,7 @@ def apply_patch():
     error = None
     try:
         shutil.copytree('data/shaders', '/root/.config/retroarch/shaders', dirs_exist_ok=True)
-        shutil.copytree('data/cores', '/opt/retroarch/cores', dirs_exist_ok=True)
-
+        
         # Append cores.cfg without filtering
         with open('data/cores.cfg', 'r') as source_file:
             data_to_append = source_file.read()
