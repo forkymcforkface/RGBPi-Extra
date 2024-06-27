@@ -109,7 +109,8 @@ def load_menu(error=None):
             menu.add.button('Tweaks', rgbpi_tweaks_menu)
             menu.add.button('Settings', settings_menu)
         menu.add.vertical_margin(margin=10)
-        menu.add.button('Quit', pygame_menu.events.EXIT)
+        if not patch_needed:
+            menu.add.button('Quit', pygame_menu.events.EXIT)
 
     pygame.display.update()
 
