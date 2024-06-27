@@ -48,13 +48,11 @@ def apply_patch():
     try:
         shutil.copytree('data/shaders', '/root/.config/retroarch/shaders', dirs_exist_ok=True)
         
-        # Append cores.cfg without filtering
         with open('data/cores.cfg', 'r') as source_file:
             data_to_append = source_file.read()
         with open('/opt/rgbpi/ui/data/cores.cfg', 'a') as dest_file:
             dest_file.write(data_to_append)
 
-        # Backup current retroarch and replace with new one
         retroarch_path = '/opt/retroarch/retroarch'
         backup_path = retroarch_path + '.bak'
         if os.path.exists(backup_path):
@@ -65,7 +63,6 @@ def apply_patch():
         shutil.copy('data/retroarch', retroarch_path)
         os.chmod(retroarch_path, 0o777)
 
-        # Copy launcher.py to RGBPI_UI_ROOT and rename launcher.pyc to launcher2.pyc
         shutil.copy('data/launcher.py', LAUNCHER_FILE)
         launcher_pyc_path = os.path.join(RGBPI_UI_ROOT, 'launcher.pyc')
         if os.path.exists(launcher_pyc_path):
@@ -78,7 +75,7 @@ def apply_patch():
         source_dir = os.path.join(os.path.dirname(__file__), 'data', 'drive')
         shutil.copytree(source_dir, media_mountpoint, dirs_exist_ok=True)
 
-        # Create or update the flag file with the current version
+
         with open(PATCH_FLAG_FILE, 'w') as f:
             f.write(VERSION)
     except Exception as e:
@@ -127,5 +124,5 @@ if __name__ == '__main__':
         if menu.is_enabled():
             menu.update(events)
             menu.draw(surface)
-        time.sleep(0.01)  # Add a short delay to reduce CPU usage
+        time.sleep(0.01)
         pygame.display.update()
