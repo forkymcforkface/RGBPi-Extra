@@ -9,5 +9,5 @@
 "psp","Sony PSP",2005,"Sony",".elf|.iso|.cso|.prx|.pbp|.chd|.bash","ppsspp_libretro.so",
 "videopac","Videopac/Odyssey",19XX,"Philips",".bin|.zip|.bash","o2em_libretro.so",
 "wonderswan","Wonderswan/Color",1999-2000,"Bandai",".ws|.wsc|.zip|.bash","mednafen_wswan_libretro.so",
-"cdi","CD-i",1990,"Philips",".chd|.iso|.cue|.bash","launchcdi.bash",
+"cdi","CD-i",1990,"Philips",".chd|.iso|.cue|.bash","same_cdi_libretro.so",
 "tic80","TIC-80",2017,"Nesbox",".tic|.bash","tic80_libretro.so",
