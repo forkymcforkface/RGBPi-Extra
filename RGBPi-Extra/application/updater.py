@@ -6,7 +6,7 @@ import urllib.request
 import pygame
 import glob
 from tweaks_settings import remove_patch
-
+from main import apply_patch
 remove_patch(reboot=False)
 
 def display_loading_screen(screen, font, message):
@@ -89,15 +89,6 @@ display_loading_screen(screen, font, "Update Complete")
 pygame.time.wait(3000)
 
 remove_patch(reboot=False)
+pygame.time.wait(5000)
+apply_patch()
 
-python_exec = 'python'
-try:
-    with open('/etc/os-release') as f:
-        os_release = f.read()
-    if 'bookworm' in os_release:
-        python_exec = 'python3.9'
-except Exception as e:
-    print(f"An error occurred while determining the OS version: {e}")
-
-main_script = os.path.join(destination_dir, "application", "main.py")
-subprocess.Popen([python_exec, main_script])
