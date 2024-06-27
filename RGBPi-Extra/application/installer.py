@@ -28,6 +28,16 @@ repo_name = "RGBPi-Extra"
 branch = "main"
 path = "RGBPi-Extra"
 
+python_exec = 'python'
+try:
+    with open('/etc/os-release') as f:
+        os_release = f.read()
+    if 'bookworm' in os_release:
+        python_exec = 'python3.9'
+        branch = "pi-5"
+except Exception:
+    pass
+
 script_dir = os.path.dirname(os.path.abspath(__file__))
 temp_dir = os.path.join(script_dir, "rgbpitemp")
 os.makedirs(temp_dir, exist_ok=True)
@@ -60,6 +70,7 @@ if not entry_exists:
         f.write(data_to_insert)
 
 main_script = os.path.join(destination_dir, "application", "main.py")
-subprocess.Popen(["python", main_script])
+
+subprocess.Popen([python_exec, main_script])
 
 os.remove(__file__)
