@@ -84,6 +84,8 @@ def restore_default_systems():
         reset_systems_cores()
         os.remove(BACKUP_SYSTEMS_FILE)
         display_message('Default systems restored', 2)
+    else:
+        display_message('No backup found', 2)
 
 def backup_systems_file():
     if not os.path.exists(BACKUP_SYSTEMS_FILE):
@@ -163,15 +165,15 @@ def install_core(name):
     systems = load_systems(SOURCE_SYSTEMS_FILE)
     selected_system = systems[name]
     
-    display_message('Installing new core...', 1)
+    display_message('Installing new system...', 1)
     
     update_systems_cores(selected_system['system'], selected_system['newcore'])
     append_system_data(selected_system['system'], selected_system)
     try:
         copy_core_file(selected_system['newcore'])
-        display_message('Core installed successfully', 2)
+        display_message('System installed successfully', 2)
     except FileNotFoundError:
-        display_message('Core file not found', 2)
+        display_message('Core file not found, check new_systems.dat', 2)
 
 def copy_core_file(core):
     source_path = f'data/cores/{core}'
