@@ -165,25 +165,42 @@ def install_core(name):
     
     display_message('Installing new system...', 1)
     
-    update_systems_cores(selected_system['system'], selected_system['core'])
-    append_system_data(selected_system['system'], selected_system)
+    core_to_use = selected_system['bashhelper'] if selected_system['bashhelper'] else selected_system['core']
     try:
         copy_core_file(selected_system['core'])
         if selected_system['bashhelper']:
             copy_bashhelper_file(selected_system['bashhelper'])
+        if not copy_info_file(selected_system['core']):
+            display_message(f'Must provide {selected_system["core"].replace(".so", ".info")} file', 5)
+            return
+        update_systems_cores(selected_system['system'], core_to_use)
+        append_system_data(selected_system['system'], selected_system)
         display_message('System installed successfully', 2)
     except FileNotFoundError:
-        display_message('Core or bashhelper file not found, check new_cores.dat', 2)
+        display_message('Core, bashhelper, or info file not found, check new_cores.dat', 2)
 
 def copy_core_file(core):
     source_path = f'data/new_cores/{core}'
     destination_path = f'/opt/retroarch/cores/{core}'
     shutil.copy2(source_path, destination_path)
+    core_info_cache = '/opt/retroarch/cores/core_info.cache'
+    if os.path.exists(core_info_cache):
+        os.remove(core_info_cache)
 
 def copy_bashhelper_file(bashhelper):
     source_path = f'data/new_cores/{bashhelper}'
     destination_path = f'/opt/retroarch/cores/{bashhelper}'
     shutil.copy2(source_path, destination_path)
+
+def copy_info_file(core):
+    info_file = core.replace('.so', '.info')
+    source_path = f'data/new_cores/{info_file}'
+    destination_path = f'/opt/retroarch/cores/{info_file}'
+    if os.path.exists(source_path):
+        shutil.copy2(source_path, destination_path)
+        return True
+    else:
+        return False
 
 def get_systems_from_file(file_path):
     systems = []
