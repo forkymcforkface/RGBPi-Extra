@@ -36,7 +36,7 @@ B: Offline Installer (This will not have the latest minor changes)
 After installing **RGBPi-Extra** you will now have a RGBPi-Extra folder within ports and within that the RGBPi-Extra launcher
 
 #### Retroarch Settings
-This allows you enable/disable retroarch features that are disabled by default in OS4. If you want to add more to it just edit /media/yourdrive/gameconfig/sys_override/global.cfg. 
+This allows you enable/disable retroarch features that are disabled by default in OS4. If you want to add more to it just edit /media/yourdrive/gameconfig/sys_override/global.cfg. Leaderboards are disabled when RGBPI-EXTRA is being used.
 #### Update Cores
 This allows you to updates cores to the lateset manually compiled version. There is a restore all cores button that will restore all default os4 core. 
 #### System Manager
