@@ -4,7 +4,7 @@ import subprocess
 import pygame
 import shutil
 
-SOURCE_CORES_FOLDER = 'cores'
+SOURCE_CORES_FOLDER = 'data/update_cores'
 DESTINATION_CORES_FOLDER = '/opt/retroarch/cores'
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)

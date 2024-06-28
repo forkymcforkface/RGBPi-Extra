@@ -4,7 +4,7 @@ import pygame
 import shutil
 import time
 
-SOURCE_SYSTEMS_FILE = 'data/new_systems.dat'
+SOURCE_SYSTEMS_FILE = 'data/new_cores/!new_cores.dat'
 DESTINATION_SYSTEMS_FILE = '/opt/rgbpi/ui/data/systems.dat'
 BACKUP_SYSTEMS_FILE = '/opt/rgbpi/ui/data/systems.dat.bak'
 SYSTEMS_CORES_FILE_TEMPLATE = '[Systems]\n'
@@ -92,7 +92,7 @@ def backup_systems_file():
 def load_systems(file_path):
     systems = {}
     with open(file_path, 'r') as file:
-        lines = file.readlines()[1:]  # Skip header
+        lines = file.readlines()[1:]
         for line in lines:
             parts = line.strip().split(',')
             system = parts[0].strip('"')
@@ -100,16 +100,16 @@ def load_systems(file_path):
             release = parts[2].strip('"')
             developer = parts[3].strip('"')
             formats = parts[4].strip('"')
-            newcore = parts[5].strip('"')
-            romfolder = parts[6].strip('"')
+            core = parts[5].strip('"')
+            bashhelper = parts[6].strip('"') if len(parts) > 6 else None
             systems[name] = {
                 'system': system,
                 'name': name,
                 'release': release,
                 'developer': developer,
                 'formats': formats,
-                'newcore': newcore,
-                'romfolder': romfolder
+                'core': core,
+                'bashhelper': bashhelper
             }
     return systems
 
@@ -165,17 +165,24 @@ def install_core(name):
     
     display_message('Installing new system...', 1)
     
-    update_systems_cores(selected_system['system'], selected_system['newcore'])
+    update_systems_cores(selected_system['system'], selected_system['core'])
     append_system_data(selected_system['system'], selected_system)
     try:
-        copy_core_file(selected_system['newcore'])
+        copy_core_file(selected_system['core'])
+        if selected_system['bashhelper']:
+            copy_bashhelper_file(selected_system['bashhelper'])
         display_message('System installed successfully', 2)
     except FileNotFoundError:
-        display_message('Core file not found, check new_systems.dat', 2)
+        display_message('Core or bashhelper file not found, check new_cores.dat', 2)
 
 def copy_core_file(core):
-    source_path = f'data/cores/{core}'
+    source_path = f'data/new_cores/{core}'
     destination_path = f'/opt/retroarch/cores/{core}'
+    shutil.copy2(source_path, destination_path)
+
+def copy_bashhelper_file(bashhelper):
+    source_path = f'data/new_cores/{bashhelper}'
+    destination_path = f'/opt/retroarch/cores/{bashhelper}'
     shutil.copy2(source_path, destination_path)
 
 def get_systems_from_file(file_path):
