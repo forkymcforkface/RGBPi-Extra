@@ -3,7 +3,7 @@ import pygame_menu
 import subprocess
 import pygame
 
-SCRIPTS_FOLDER = 'scripts'
+SCRIPTS_FOLDER = 'data/scripts'
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 WINDOW_SIZE = (290, 240)
