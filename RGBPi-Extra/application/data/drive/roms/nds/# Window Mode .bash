@@ -43,7 +43,7 @@ EOF
 
 
 # Path to the first configuration file
-cfg_file_path1="/opt/rgbpi/ui/tweaks/sys_overrides/nds.cfg"
+cfg_file_path1="/media/usb1/gameconfig/sys_override/nds.cfg"
 
 # Path to the second configuration file
 cfg_file_path2="/media/usb1/remaps/system/melonDS DS/melonDS DS.rmp"

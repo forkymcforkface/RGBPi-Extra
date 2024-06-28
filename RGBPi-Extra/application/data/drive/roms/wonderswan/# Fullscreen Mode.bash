@@ -13,9 +13,8 @@ rgui_aspect_ratio_lock = "1"
 EOF
 )
 
-
 # Path to the first configuration file
-cfg_file_path1="/opt/rgbpi/ui/tweaks/sys_overrides/wonderswan.cfg"
+cfg_file_path1="/media/usb1/gameconfig/sys_override/wonderswan.cfg"
 
 # Write new content to the first configuration file
 echo "$new_content_cfg1" > "$cfg_file_path1"

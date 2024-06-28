@@ -1,15 +1,16 @@
 
 # RGBPi-Extra
 
-RGBpi-Extra is a UI that allows you to apply a collection of unofficial scripts for [RGBPiOS](https://www.rgb-pi.com/#os), It can install new systems (cores) restore full retroarch access, with global and sys overrides, these are advanced features that require manual configuration. These scripts are experimental in nature and may not be fully stable. The concept for creating this repository was inspired by [RetroPie-Extra](https://github.com/Exarkuniv/RetroPie-Extra) and represents a collaborative effort across multiple parties within the RGBPi community.
+RGBpi-Extra is a UI that allows you to apply a collection of unofficial scripts, install new systems, and allow for full retroarch access for [RGBPiOS](https://www.rgb-pi.com/#os). The system overrides are advanced features that require manual configuration. These scripts are experimental in nature and may not be fully stable. The concept for creating this repository was inspired by [RetroPie-Extra](https://github.com/Exarkuniv/RetroPie-Extra) and represents a collaborative effort across multiple parties within the RGBPi community.
 
 
 I have found new scripts made by other people and added them to this Repo. I dont take credit for any of them, other then the ones I made. 
  
  **Important Notes**
 - Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues. DO NOT ASK QUESTIONS IN DISCORD/TELEGRAM FOR ANY ISSUES YOU MAY RUN INTO.
+- IF YOU ARE ON V.19A OR LOWER YOU MUST RUN THE UNINSTALL IN THE MENU, DELETE YOUR RGBPI-EXTRA FOLDER, AND REINSTALL AS A FRESH INSTALL.
+- LEADERBOARDS ARE DISABLED WHILE RGBPI-EXTRA IS ENABLED.
 - DO NOT INSTALL RGBPI-EXTRA IF YOU ONLY USE AN SD CARD or NFS. 
-- EXTERNAL USB DRIVE INSTALLS ONLY
 - GAMEPAD REQUIRED TO NAVIGATE RGBPI-EXTRA UI
 
 ## Installation Options 
@@ -63,13 +64,14 @@ Since we are using CRTs not all cores/emulators will look good. This all depends
 #### Added Libretro cores
 
 - [X] - `lr-melondsds` - NDS emu - MelonDS port for libretro - **runs great**
+- [X] - `lr-dolphin` - Gamecube/wii emu - Dolphin port for libretro - **runs great, Pi5 only** 
 - [X] - `lr-mesen-s` - Nes emu - Mesen-S port for libretro
 - [X] - `lr-atari5200` - 400, 800, 600 XL, 800XL, 130XE and 5200 game console emulator.
 - [X] - `lr-mednafen-vb` - Virtual Boy emulator - **runs great, not pixel perfect**
 - [X] - `lr-ppsspp` - PlayStation Portable emu - PPSSPP port for libretro - **works well, included in current patch**
 - [X] - `lr-samecdi` - Philips CDI - same_cdi port for libretro - **runs great and at correct resolution, included in current patch**
 - [X] - `lr-TIC-80` - Fantasy Game Emulator - **runs great**
-- [X] - `lr-virtualjaguar` - Atari Jaguar emulator - **runs ok at beat and has sound issues, included in current patch**
+- [X] - `lr-virtualjaguar` - Atari Jaguar emulator - **runs ok on pi4, runs well on pi5, not all games work, included in current patch**
 - [X] - `lr-WonderSwan` - WonderSwan and WonderSwan Color emulator - **runs great, included in current patch**
 - [X] - `lr-AtariLynx` - Atari Lynx emulator - **runs great, included in current patch**
 - [X] - `lr-Videopac` - Videopac/Odyssey emulator - **runs great, included in current patch**
