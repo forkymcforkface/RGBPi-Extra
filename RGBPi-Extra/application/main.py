@@ -54,18 +54,13 @@ def apply_patch():
             dest_file.write(data_to_append)
 
         retroarch_path = '/opt/retroarch/retroarch'
-        retroarch_path31 = '/opt/retroarch/retroarch31_khz'
         backup_path = retroarch_path + '.bak'
-        backup_path31 = retroarch_path31 + '.bak'
         if os.path.exists(backup_path):
             os.remove(retroarch_path)
-            os.remove(retroarch_path31)
         else:
             shutil.move(retroarch_path, backup_path)
-            shutil.move(retroarch_path31, backup_path31)
         
         shutil.copy('data/retroarch', retroarch_path)
-        shutil.copy('data/retroarch_31khz', retroarch_path31)
         os.chmod(retroarch_path, 0o777)
 
         shutil.copy('data/launcher.py', LAUNCHER_FILE)
