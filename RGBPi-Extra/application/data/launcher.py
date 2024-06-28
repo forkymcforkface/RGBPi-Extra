@@ -40,7 +40,10 @@ def launch_content():
         utils.cmd('clear')
         
         core = systems_cores[system]
-        if system == 'nds':
+        if '.bash' in game_path:
+            launch_command = f'"{game_path}"'
+            utils.cmd(f'chmod +x {launch_command}')
+        elif system == 'nds':
             launch_command = f'{rtk.path_cores}/launchnds.bash --appendconfig={retroarch_cfg_file} "{game_path}"'
         else:
             launch_command = f'{rtk.path_retroarch} {device_cmd} -L {rtk.path_cores}/{core} --appendconfig={retroarch_cfg_file} "{game_path}"'
