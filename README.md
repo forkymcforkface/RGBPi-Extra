@@ -35,8 +35,12 @@ B: Offline Installer (This will not have the latest minor changes)
 
 After installing **RGBPi-Extra** you will now have a RGBPi-Extra folder within ports and within that the RGBPi-Extra launcher
 
+#### Retroarch Settings
+This allows you enable/disable retroarch features that are disabled by default in OS4. If you want to add more to it just edit /media/yourdrive/gameconfig/sys_override/global.cfg. 
 #### Update Cores
-This allows you to updates cores to the lateset manually compiled version. it also allows you replace the nes core with mesen. There is a restore all cores button that will restore all default os4 core. 
+This allows you to updates cores to the lateset manually compiled version. There is a restore all cores button that will restore all default os4 core. 
+#### System Manager
+This allows you to add new systems like NDS, PSP etc. Copy your system roms to the new rom folder, scan for games and the new systems will be added to the bottom of your system list.
 #### Tweaks
 A collection of scripts to modify RGBPi OS settings, Bullseye settings or just general improvements
 #### Settings
@@ -52,7 +56,7 @@ I'll have a note at the end with some Info about it. if there is NO note or  [ ]
 
 Since we are using CRTs not all cores/emulators will look good. This all depends on the native resolution and fps of the games
 
-#### Emulators 
+## Emulators 
 
 - [ ] - `box86` -"Box86 emulator"
 - [ ] - `openbor` - Beat 'em Up Game Engine (newest version) -
