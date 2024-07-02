@@ -4,8 +4,8 @@
 
 #pragma parameter ia_target_gamma "Target Gamma" 2.2 0.1 5.0 0.05
 #pragma parameter ia_monitor_gamma "Monitor Gamma" 2.2 0.1 5.0 0.05
-#pragma parameter ia_overscan_percent_x "Horizontal Overscan %" 0.0 -50.0 50.0 1.0
-#pragma parameter ia_overscan_percent_y "Vertical Overscan %" 0.0 -50.0 50.0 1.0
+#pragma parameter ia_overscan_percent_x "Horizontal Overscan %" 0.0 -50.0 50.0 0.5
+#pragma parameter ia_overscan_percent_y "Vertical Overscan %" 0.0 -50.0 50.0 0.5
 #pragma parameter ia_saturation "Saturation" 1.0 0.0 5.0 0.01
 #pragma parameter ia_contrast "Contrast" 1.0 0.0 10.0 0.01
 #pragma parameter ia_luminance "Luminance" 1.0 0.0 2.0 0.01
@@ -15,14 +15,12 @@
 #pragma parameter ia_G "Green Channel" 1.0 0.0 2.0 0.01
 #pragma parameter ia_B "Blue Channel" 1.0 0.0 2.0 0.01
 #pragma parameter ia_ZOOM "Zoom Factor" 1.0 0.0 4.0 0.01
-#pragma parameter ia_XPOS "X Modifier" 0.0 -1.0 1.0 0.00025
+#pragma parameter ia_XPOS "X Modifier" 0.0 -1.0 1.0 0.00020
 #pragma parameter ia_YPOS "Y Modifier" 0.0 -1.0 1.0 0.001
 #pragma parameter ia_TOPMASK "Overscan Mask Top" 0.0 0.0 1.0 0.0025
 #pragma parameter ia_BOTMASK "Overscan Mask Bottom" 0.0 0.0 1.0 0.0025
 #pragma parameter ia_LMASK "Overscan Mask Left" 0.0 0.0 1.0 0.0025
 #pragma parameter ia_RMASK "Overscan Mask Right" 0.0 0.0 1.0 0.0025
-#pragma parameter ia_GRAIN_STR "Film Grain" 0.0 0.0 72.0 6.0
-#pragma parameter ia_SHARPEN "Sharpen" 0.0 0.0 1.0 0.05
 #pragma parameter ia_FLIP_HORZ "Flip Horiz Axis" 0.0 0.0 1.0 1.0
 #pragma parameter ia_FLIP_VERT "Flip Vert Axis" 0.0 0.0 1.0 1.0
 
