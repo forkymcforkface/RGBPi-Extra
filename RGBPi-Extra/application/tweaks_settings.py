@@ -21,12 +21,7 @@ def remove_patch(reboot=True):
         os.remove(os.path.join(RGBPI_ROOT, 'patch_applied.flag'))
         os.remove(os.path.join(RA_ROOT, 'retroarch'))
         os.rename(os.path.join(RA_ROOT, 'retroarch.bak'), os.path.join(RA_ROOT, 'retroarch'))
-        config = configparser.ConfigParser()
-        config.read(os.path.join(RGBPI_ROOT, 'config.ini'))
-        config['cfg']['adv_mode'] = 'user'
-        with open(os.path.join(RGBPI_ROOT, 'config.ini'), 'w') as config_file:
-            config.write(config_file)
-        shutil.copy('data/retroarch.cfg', '/root/.config/retroarch/retroarch.cfg')
+        shutil.copy('data/scripts/files/retroarch.cfg', '/root/.config/retroarch/retroarch.cfg')
     except Exception as e:
         print(f"An error occurred: {e}")
 

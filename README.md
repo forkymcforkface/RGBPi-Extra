@@ -1,5 +1,5 @@
 
-# RGBPi-Extra (currently disabled, new update coming soon)
+# RGBPi-Extra
 
 RGBpi-Extra is a UI that allows you to apply a collection of unofficial scripts, install new systems, and allow for full retroarch access for [RGBPiOS](https://www.rgb-pi.com/#os). The system overrides are advanced features that require manual configuration. These scripts are experimental in nature and may not be fully stable. The concept for creating this repository was inspired by [RetroPie-Extra](https://github.com/Exarkuniv/RetroPie-Extra) and represents a collaborative effort across multiple parties within the RGBPi community.
 
@@ -10,7 +10,7 @@ I have found new scripts made by other people and added them to this Repo. I don
 - Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues. DO NOT ASK QUESTIONS IN DISCORD/TELEGRAM FOR ANY ISSUES YOU MAY RUN INTO.
 - IF YOU ARE ON V.19A OR LOWER YOU MUST RUN THE UNINSTALL IN THE MENU, DELETE YOUR RGBPI-EXTRA FOLDER, AND REINSTALL AS A FRESH INSTALL.
 - OVERRIDES DISABLED ON NFS STORAGE
-- DO NOT INSTALL RGBPI-EXTRA IF YOU ONLY USE AN SD CARD or NFS. 
+- DO NOT INSTALL RGBPI-EXTRA IF YOU ONLY USE AN SD CARD. 
 - GAMEPAD REQUIRED TO NAVIGATE RGBPI-EXTRA UI
 
 ## Installation Options 
