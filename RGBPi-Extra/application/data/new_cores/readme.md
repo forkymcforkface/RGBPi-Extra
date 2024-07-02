@@ -1,0 +1,3 @@
+- Place new core .so files in this directory
+- Add the core to a new line in !new_cores.dat follow the format of the other lines
+- New retroarch system overrides need to be placed in /data/drive/gameconfig/sys_override with systemname.cfg format 
