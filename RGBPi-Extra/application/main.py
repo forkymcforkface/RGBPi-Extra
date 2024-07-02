@@ -48,7 +48,7 @@ def apply_patch():
     try:
         shutil.copytree('data/shaders', '/root/.config/retroarch/shaders', dirs_exist_ok=True)
         
-        with open('data/cores.cfg', 'r') as source_file:
+        with open('data/new_cores/cores.cfg', 'r') as source_file:
             data_to_append = source_file.read()
         with open('/opt/rgbpi/ui/data/cores.cfg', 'a') as dest_file:
             dest_file.write(data_to_append)
