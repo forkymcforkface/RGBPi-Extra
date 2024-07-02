@@ -11,3 +11,5 @@
 "wonderswan","Wonderswan/Color",1999-2000,"Bandai",".ws|.wsc|.zip|.bash","mednafen_wswan_libretro.so",
 "cdi","CD-i",1990,"Philips",".chd|.iso|.cue|.bash","same_cdi_libretro.so",
 "tic80","TIC-80",2017,"Nesbox",".tic|.bash","tic80_libretro.so",
+"nes","Nintendo NES/Famicom",1983,"Nintendo",".nes|.fds|.zip|.7z","mesen_libretro.so",
+"zapper","Zapper",1985,"Nintendo",".nes|.fds|.zip|.7z","zapper_libretro.so",
