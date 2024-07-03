@@ -23,7 +23,7 @@ A: Online Installer
 4. Go to ports in rgbpi ui and run RGBPi-Extra
 5. The RGBPi-Extra UI will appear allowing you to apply make any tweaks
 
-B: Offline Install (This will not have the latest minor changes)
+B: Offline Install
 
 1. Download the repo [RGBPi-Extra zip](https://github.com/forkymcforkface/RGBPi-Extra/archive/refs/heads/main.zip))
 2. Open the zip and extract the RGBPi-Extra folder to your ports folder
