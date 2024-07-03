@@ -64,7 +64,8 @@ Since we are using CRTs not all cores/emulators will look good. This all depends
 
 #### Added Libretro cores
 
-- [X] - `lr-melondsds` - NDS emu - MelonDS port for libretro - **runs great**
+- [X] - `lr-mame2003-plus` - MAME emu - mame2003-plus port for libretro - **runs great**
+- [X] - `lr-melondsds` - NDS emu - MelonDS port for libretro - **runs 2d games fullspeed on Pi4, Pi5 everything runs**
 - [X] - `lr-dolphin` - Gamecube/wii emu - Dolphin port for libretro - **runs great, Pi5 only** 
 - [X] - `lr-mesen-s` - Nes emu - Mesen-S port for libretro
 - [X] - `lr-atari5200` - 400, 800, 600 XL, 800XL, 130XE and 5200 game console emulator.
