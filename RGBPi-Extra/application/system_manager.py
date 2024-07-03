@@ -221,7 +221,7 @@ def get_systems_from_file(file_path):
 
 def get_core_install_menu(menu_theme, window_size):
     menu = pygame_menu.Menu(
-        title='System Installer',
+        title='                  System Installer',
         theme=menu_theme,
         width=window_size[0],
         height=window_size[1],
