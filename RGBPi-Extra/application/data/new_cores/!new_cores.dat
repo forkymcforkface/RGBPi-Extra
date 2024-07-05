@@ -13,4 +13,8 @@
 "tic80","TIC-80",2017,"Nesbox",".tic|.bash","tic80_libretro.so",
 "nes","Nintendo NES/Famicom",1983,"Nintendo",".nes|.fds|.zip|.7z","mesen_libretro.so",
 "zapper","Zapper",1985,"Nintendo",".nes|.fds|.zip|.7z","zapper_libretro.so",
+<<<<<<< HEAD
 "mame2003","MAME2003",2003,"Arcade",".zip","mame2003_plus_libretro.so",
+=======
+"mame2003","MAME2003",2003,"Arcade",".zip","mame2003_plus_libretro.so",
+>>>>>>> main
