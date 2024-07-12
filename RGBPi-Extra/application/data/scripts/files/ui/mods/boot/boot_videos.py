@@ -26,11 +26,11 @@ def play_videos():
             '--play-and-exit',
             '--no-osd',
             '--quiet',
-            '--volume=256',
             '--aout=alsa',
             playlist_file
         ]
-        subprocess.run(cvlc_command)
+        with open(os.devnull, 'w') as devnull:
+            subprocess.run(cvlc_command, stdout=devnull, stderr=devnull)
 
 if __name__ == "__main__":
     play_videos()
