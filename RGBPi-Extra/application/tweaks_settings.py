@@ -19,8 +19,6 @@ def remove_patch(reboot=True):
         os.remove(os.path.join(RGBPI_ROOT, 'launcher.py'))
         os.rename(os.path.join(RGBPI_ROOT, 'launcher2.pyc'), os.path.join(RGBPI_ROOT, 'launcher.pyc'))
         os.remove(os.path.join(RGBPI_ROOT, 'patch_applied.flag'))
-        os.remove(os.path.join(RA_ROOT, 'retroarch'))
-        os.rename(os.path.join(RA_ROOT, 'retroarch.bak'), os.path.join(RA_ROOT, 'retroarch'))
         shutil.copy('data/scripts/files/retroarch.cfg', '/root/.config/retroarch/retroarch.cfg')
     except Exception as e:
         print(f"An error occurred: {e}")
