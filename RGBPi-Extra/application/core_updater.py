@@ -6,6 +6,7 @@ import shutil
 
 SOURCE_CORES_FOLDER = 'data/update_cores'
 DESTINATION_CORES_FOLDER = '/opt/retroarch/cores'
+TEMP_FOLDER = '/root/temp'
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 WINDOW_SIZE = (290, 240)
@@ -31,8 +32,14 @@ def extract_file(script_path, extracted_folder):
     elif script_path.endswith('.zip'):
         subprocess.run(["unzip", "-o", script_path, "-d", extracted_folder])
 
+def cleanup_temp_folder(folder):
+    try:
+        shutil.rmtree(folder)
+    except Exception as e:
+        print(f"Error cleaning up temp folder: {e}")
+
 def update_core(core_name, core_ext):
-    extracted_folder = "/root/temp"
+    extracted_folder = TEMP_FOLDER
     if core_ext.lower() in ['.7z', '.zip']:
         core_path = os.path.join(SOURCE_CORES_FOLDER, f"{core_name}{core_ext}")
         display_message('Extracting Core...')
@@ -74,6 +81,8 @@ def update_core(core_name, core_ext):
         start_time = pygame.time.get_ticks()
         while pygame.time.get_ticks() - start_time < 2000:
             pass
+
+    cleanup_temp_folder(extracted_folder)
 
 def restore_default_cores():
     display_message('Restoring')
