@@ -10,6 +10,7 @@ I have found new scripts made by other people and added them to this Repo. I don
  
  **Important Notes**
 - Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues. DO NOT ASK QUESTIONS IN DISCORD/TELEGRAM FOR ANY ISSUES YOU MAY RUN INTO.
+- YOU MUST UNINSTALL RGBPI-EXTRA IF YOU ARE REFLASHING YOUR SD CARD (SETTINGS > REMOVE)
 - IF YOU ARE ON V.19A OR LOWER YOU MUST RUN THE UNINSTALL IN THE MENU, DELETE YOUR RGBPI-EXTRA FOLDER, AND REINSTALL AS A FRESH INSTALL.
 - OVERRIDES DISABLED ON NFS STORAGE
 - DO NOT INSTALL RGBPI-EXTRA IF YOU ONLY USE AN SD CARD. 
