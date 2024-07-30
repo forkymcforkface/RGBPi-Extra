@@ -1,16 +1,5 @@
 #version 110
 
-#pragma parameter compo "S-Video/Composite" 1.0 0.0 1.0 1.0
-
-/*
-NTSC-mini DariusG 2023
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation; either version 2 of the License, or (at your option)
-any later version.
-*/
-
 #if defined(VERTEX)
 
 #if __VERSION__ >= 130
@@ -98,52 +87,62 @@ COMPAT_VARYING vec4 TEX0;
 #define OutSize vec4(OutputSize, 1.0 / OutputSize)
 
 #ifdef PARAMETER_UNIFORM
-uniform COMPAT_PRECISION float compo;
-uniform COMPAT_PRECISION float rainbow;
+uniform COMPAT_PRECISION float ph_mode;
+uniform COMPAT_PRECISION float d_crawl;
+uniform COMPAT_PRECISION float mini_hue1;
+uniform COMPAT_PRECISION float mini_hue2;
+uniform COMPAT_PRECISION float h_deg;
+uniform COMPAT_PRECISION float v_deg;
+uniform COMPAT_PRECISION float modulo;
+uniform COMPAT_PRECISION float rf_audio;
 
 #else
-#define compo 1.0
-#define rainbow 1.0
+#define ph_mode 0.0
+#define d_crawl 0.0
+#define mini_hue2 0.0
+#define mini_hue1 0.0
+#define rf_audio 0.0
+
 #endif
 
-const mat3 YIQ2RGB = mat3(1.000, 1.000, 1.000,
-                          0.956,-0.272,-1.106,
-                          0.621,-0.647, 1.703);
+#define iTimer (float(FrameCount) / 60.0)
 
-const mat3 RGBYIQ = mat3(0.299, 0.596, 0.211,
-                         0.587,-0.274,-0.523,
-                         0.114,-0.322, 0.312);
-#define pi23 3.1415926/2.0
+#define onedeg 0.017453
+#define PI   3.14159265358979323846
+#define TAU  6.28318530717958647693
+const mat3 RGBYUV = mat3(0.299, 0.587, 0.114,
+                        -0.299, -0.587, 0.886, 
+                         0.701, -0.587, -0.114);
 
-void main()
+float noise(vec2 co)
 {
-vec2 ps = vec2(SourceSize.z, 0.0);
-// predict the half res. x after this pass (/2.0 the x freq)
-float pattern = vTexCoord.x*SourceSize.x/2.0+vTexCoord.y*SourceSize.y;
-if (rainbow == 1.0) pattern = vTexCoord.x/2.0*SourceSize.x;
+return fract(sin(iTimer * dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
 
-float phase = pattern*pi23;
-vec3 c00 = COMPAT_TEXTURE(Source,vTexCoord).rgb;
-// I-Q should have half bandwidth than Y
-vec3 c01 = COMPAT_TEXTURE(Source,vTexCoord+ps).rgb;
-c00 = vec3(c00.r,c01.gb*0.5+c00.gb*0.5);
 
-c00 *= RGBYIQ;
-vec3 osc = vec3(0.0);
+void main() {
 
-// tweak to adjust for pinkish tint 
-if (compo == 1.0) osc = vec3(1.0,1.0*cos(phase),1.0*sin(phase));
-if (compo == 0.0) osc = vec3(1.0,2.0*cos(phase),2.0*sin(phase));
-c00 *= osc;
+vec3 res = vec3(0.0);
 
-// send compo as 1 signal combined
-float res = dot(c00,vec3(1.0));
+// snes loosely based on internet videos and blargg
 
-// true luma-chroma s-video (send chroma as 1 signal)
-c00.yz = vec2(dot(c00.yz,vec2(1.0)));
+float h_ph, v_ph, mod0 = 0.0;
+if      (ph_mode == 0.0) {h_ph =  90.0*onedeg; v_ph = PI;        mod0 = 2.0;}
+else if (ph_mode == 1.0) {h_ph = 120.0*onedeg; v_ph = PI;        mod0 = 2.0;}
+else if (ph_mode == 2.0) {h_ph = 111.0*onedeg; v_ph = PI;        mod0 = 2.0;}
+else if (ph_mode == 3.0) {h_ph = 120.0*onedeg; v_ph = PI*0.6667; mod0 = 3.0;}
+else if (ph_mode == 4.0) {h_ph =  45.0*onedeg; v_ph = 0.0; mod0 = 2.0;}
+else                     {h_ph =  h_deg*onedeg; v_ph = v_deg*onedeg; mod0 = modulo;}
 
-if (compo == 1.0) FragColor.rgb = vec3(res);
-else FragColor.rgb = c00;
+float phase = floor(vTexCoord.x*SourceSize.x)*h_ph + floor(vTexCoord.y*SourceSize.y)*v_ph+ noise(vTexCoord)*rf_audio*PI;
+phase += d_crawl *sin(mod(float(FrameCount),6.0))*PI*0.6667;
 
+res = COMPAT_TEXTURE(Source,vTexCoord).rgb*RGBYUV;
+res.gb *=0.5*vec2(cos(phase+mini_hue1),sin(phase+mini_hue2));
+
+float signal = dot(vec3(1.0),res);
+signal *= 1.0 ;
+
+FragColor.rgb = vec3(signal);
 }
 #endif
