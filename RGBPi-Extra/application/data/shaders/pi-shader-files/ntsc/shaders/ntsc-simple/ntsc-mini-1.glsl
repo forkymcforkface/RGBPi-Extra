@@ -1,19 +1,18 @@
 #version 110
 
-/*
-NTSC-mini DariusG 2023
+#pragma parameter ph_mode "Phase:-1 Custom,0:blend,1:ZX,2:MD,3:NES/SNES,4:CGA/AppleII" 2.0 -1.0 4.0 1.0
+#pragma parameter h_deg "Custom Phase Horiz. Degrees" 120.0 0.0 180.0 0.5
+#pragma parameter v_deg "Custom Phase Vert. Degrees" 120.0 0.0 360.0 2.5
+#pragma parameter modulo "Custom Phase Modulo Steps (360/Vert.Deg)" 3.0 0.0 12.0 1.0
+#pragma parameter mini_sharp "Resolution" 0.5 0.1 4.0 0.1
+#pragma parameter Fl "Freq. Cutoff" 0.2 0.01 1.0 0.01
+#pragma parameter lpass "Chroma Low Pass" 0.05 0.0 1.0 0.01
+#pragma parameter d_crawl "Dot Crawl" 0.0 0.0 1.0 1.0
+#pragma parameter rf_audio "RF Audio Interference" 0.0 0.0 0.2 0.02
+#pragma parameter mini_hue1 "Hue Shift I" 0.1 -6.0 6.0 0.05
+#pragma parameter mini_hue2 "Hue Shift Q" -0.1 -6.0 6.0 0.05
+#pragma parameter mini_sat "Saturation" 2.0 0.0 4.0 0.05
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation; either version 2 of the License, or (at your option)
-any later version.
-*/
-#pragma parameter bogus_ph " [ Info: Phase 0:~256px, 1:~320px Horiz. ] " 0.0 0.0 0.0 0.0
-#pragma parameter rainbow "Rainbow Effect (Phase)" 0.0 0.0 1.0 1.0
-#pragma parameter afacts "NTSC Artifacts" 0.5 0.0 1.0 0.02
-#pragma parameter ntsc_red "NTSC Red" 1.0 0.0 2.0 0.01
-#pragma parameter ntsc_green "NTSC Green" 1.0 0.0 2.0 0.01
-#pragma parameter ntsc_blue "NTSC Blue" 1.0 0.0 2.0 0.01
 #if defined(VERTEX)
 
 #if __VERSION__ >= 130
@@ -92,7 +91,6 @@ uniform COMPAT_PRECISION vec2 OutputSize;
 uniform COMPAT_PRECISION vec2 TextureSize;
 uniform COMPAT_PRECISION vec2 InputSize;
 uniform sampler2D Texture;
-uniform sampler2D PassPrev2Texture;
 COMPAT_VARYING vec4 TEX0;
 
 // compatibility #defines
@@ -102,74 +100,97 @@ COMPAT_VARYING vec4 TEX0;
 #define OutSize vec4(OutputSize, 1.0 / OutputSize)
 
 #ifdef PARAMETER_UNIFORM
-uniform COMPAT_PRECISION float rainbow;
-uniform COMPAT_PRECISION float compo;
-uniform COMPAT_PRECISION float afacts;
-uniform COMPAT_PRECISION float ntsc_red;
-uniform COMPAT_PRECISION float ntsc_green;
-uniform COMPAT_PRECISION float ntsc_blue;
+uniform COMPAT_PRECISION float ph_mode;
+uniform COMPAT_PRECISION float Fl;
+uniform COMPAT_PRECISION float lpass;
+uniform COMPAT_PRECISION float d_crawl;
+uniform COMPAT_PRECISION float mini_hue;
+uniform COMPAT_PRECISION float mini_sat;
+uniform COMPAT_PRECISION float mini_sharp;
+uniform COMPAT_PRECISION float h_deg;
+uniform COMPAT_PRECISION float v_deg;
+uniform COMPAT_PRECISION float modulo;
 
 #else
-#define rainbow 1.0
-#define compo 1.0
-#define afacts 0.5
-#define ntsc_red 1.0
-#define ntsc_blue 1.0
-#define ntsc_green 1.0
+#define ph_mode 90.0
+#define Fl 90.0
+#define lpass 0.2
+#define d_crawl 0.0
+#define mini_hue 0.0
+#define mini_sat 0.0
+#define mini_sharp 1.0
+#define h_deg 60.0
+#define v_deg 60.0
+#define modulo 1.0
 #endif
 
+#define PI   3.14159265358979323846
+#define TAU  6.28318530717958647693
+#define s 1.0
+#define onedeg 0.017453
 
-const mat3 YIQ2RGB = mat3(1.000, 1.000, 1.000,
-                          0.956,-0.272,-1.106,
-                          0.621,-0.647, 1.703);
-#define pi23 3.1415926/2.0
+const mat3 YUV2RGB = mat3(1.0, 0.0, 1.13983,
+                          1.0, -0.39465, -0.58060,
+                          1.0, 2.03211, 0.0);
 
-
-void main()
+float kaizer (float N, float p)
 {
-vec2 ps = vec2(SourceSize.z, 0.0);
-float pattern = vTexCoord.x*SourceSize.x+vTexCoord.y*SourceSize.y;
-if (rainbow == 1.0) pattern = vTexCoord.x*SourceSize.x;
+    // Compute sinc filter.
+    float k = sin(2.0 * Fl / s * (N - (p - 1.0) / 2.0));
+    return k;
+}
 
-// FIR moving average calculated at https://fiiir.com/
-vec3 c30 = COMPAT_TEXTURE(Source,vTexCoord-3.0*ps).rgb*0.019775776609144702;
-float phase30 = (pattern-3.0)*pi23;
-c30.yz *= vec2(cos(phase30),sin(phase30));
+void main() {
 
-vec3 c20 = COMPAT_TEXTURE(Source,vTexCoord-2.0*ps).rgb*0.101190476190476164;
-float phase20 = (pattern-2.0)*pi23;
-c20.yz *= vec2(cos(phase20),sin(phase20));
+vec3 yuv = vec3(0.0);
+vec2 ps = vec2(SourceSize.z,0.0);
+float sum = 0.0; float sumc = 0.0;
 
-vec3 c10 = COMPAT_TEXTURE(Source,vTexCoord-ps).rgb*0.230224223390855270;
-float phase10 = (pattern-1.0)*pi23;
-c10.yz *= vec2(cos(phase10),sin(phase10));
 
-vec3 c00 = COMPAT_TEXTURE(Source,vTexCoord).rgb*0.297619047619047616;
-float phase = pattern*pi23;
-c00.yz *= vec2(cos(phase),sin(phase));
+// luma
+for (int i=0; i<4; i++)
+{
+float p = float (i);
+vec2 pos = vTexCoord + ps*p/mini_sharp -ps;
+// Window
+float w = kaizer(4.0,p);
+yuv.r += COMPAT_TEXTURE(Source,pos).r*w;
+sum += w;
+}
+yuv.r /= sum;
 
-vec3 c01 = COMPAT_TEXTURE(Source,vTexCoord+ps).rgb*0.230224223390855270;
-float phase01 = (pattern+1.0)*pi23;
-c01.yz *= vec2(cos(phase01),sin(phase01));
+vec3 line = vec3(0.0);
 
-vec3 c02 = COMPAT_TEXTURE(Source,vTexCoord+2.0*ps).rgb*0.101190476190476164;
-float phase02 = (pattern+2.0)*pi23;
-c02.yz *= vec2(cos(phase02),sin(phase02));
+//chroma
+for (int i=-4; i<4; i++)
+{
+float p = float (i);
+// Low-pass 
+float w = exp(-lpass*p*p);
 
-vec3 c03 = COMPAT_TEXTURE(Source,vTexCoord+3.0*ps).rgb*0.019775776609144702;
-float phase03 = (pattern+3.0)*pi23;
-c03.yz *= vec2(cos(phase03),sin(phase03));
+// snes loosely based on internet videos and blargg
 
-vec3 res = c30+c20+c10+c00+c01+c02+c03;
-res *= YIQ2RGB;
+float h_ph, v_ph, mod0 = 0.0;
+if      (ph_mode == 0.0) {h_ph =  90.0*onedeg; v_ph = PI;        mod0 = 2.0;}
+else if (ph_mode == 1.0) {h_ph = 120.0*onedeg; v_ph = PI;        mod0 = 2.0;}
+else if (ph_mode == 2.0) {h_ph = 111.0*onedeg; v_ph = PI;        mod0 = 2.0;}
+else if (ph_mode == 3.0) {h_ph = 120.0*onedeg; v_ph = PI*0.6667; mod0 = 3.0;}
+else if (ph_mode == 4.0) {h_ph =  45.0*onedeg; v_ph = 0.0; mod0 = 2.0;}
+else                     {h_ph =  h_deg*onedeg; v_ph = v_deg*onedeg; mod0 = modulo;}
 
-res *= vec3(ntsc_red, ntsc_green, ntsc_blue);
+float phase = floor(vTexCoord.x*SourceSize.x + p)*h_ph + mod(floor(vTexCoord.y*SourceSize.y),mod0)*v_ph;
+phase += mini_hue;
+phase += d_crawl *sin(mod(float(FrameCount),6.0))*PI*0.6667;
 
-vec3 clean = vec3(0.0);
-clean += COMPAT_TEXTURE(PassPrev2Texture,vTexCoord).rgb*0.50;
-clean += COMPAT_TEXTURE(PassPrev2Texture,vTexCoord+ps).rgb*0.25;
-clean += COMPAT_TEXTURE(PassPrev2Texture,vTexCoord-ps).rgb*0.25;
-res = res*afacts + clean*(1.0-afacts);
-FragColor.rgb = res;
+vec2 qam = mini_sat*vec2(cos(phase),sin(phase));
+
+line.gb = COMPAT_TEXTURE(Source,vTexCoord + ps*p).gb*qam*w;
+
+yuv.gb += line.gb;
+sumc += w;
+}
+yuv.gb /= sumc;
+
+FragColor.rgb = yuv*YUV2RGB;
 }
 #endif

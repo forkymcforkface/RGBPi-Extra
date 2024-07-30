@@ -1,6 +1,7 @@
 #!/bin/bash
 
 image_paths=(
+    "/opt/rgbpi/ui/images/boot_1.bmp"
     "/opt/rgbpi/ui/images/boot_2.bmp"
     "/opt/rgbpi/ui/images/boot_3.bmp"
     "/opt/rgbpi/ui/images/boot_4.bmp"
