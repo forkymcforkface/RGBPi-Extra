@@ -1,19 +1,14 @@
 
 # RGBPi-Extra
 
-RGBpi-Extra is a UI that allows you to apply a collection of unofficial scripts, install new systems, and allow for full retroarch access for [RGBPiOS](https://www.rgb-pi.com/#os). The system overrides are advanced features that require manual configuration. These scripts are experimental in nature and may not be fully stable. The concept for creating this repository was inspired by [RetroPie-Extra](https://github.com/Exarkuniv/RetroPie-Extra) and represents a collaborative effort across multiple parties within the RGBPi community. 
+RGBpi-Extra is a UI that allows you to apply a collection of unofficial scripts, install new systems/cores, and allow for full retroarch access for [RGBPiOS](https://www.rgb-pi.com/#os). The system overrides are advanced features that require manual configuration. These scripts are experimental in nature and may not be fully stable. The concept for creating this repository was inspired by [RetroPie-Extra](https://github.com/Exarkuniv/RetroPie-Extra) and represents a collaborative effort across multiple parties within the RGBPi community. 
 
 Thank you [Ruben](https://github.com/rtomasa) for your guidance so that RGBPi-Extra does not affect the RGB-Pi highscore community.
-
-
-I have found new scripts made by other people and added them to this Repo. I dont take credit for any of them, other then the ones I made. 
  
  **Important Notes**
-- Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues. DO NOT ASK QUESTIONS IN DISCORD/TELEGRAM FOR ANY ISSUES YOU MAY RUN INTO.
-- YOU MUST UNINSTALL RGBPI-EXTRA IF YOU ARE REFLASHING YOUR SD CARD (SETTINGS > REMOVE)
-- IF YOU ARE ON V.19A OR LOWER YOU MUST RUN THE UNINSTALL IN THE MENU, DELETE YOUR RGBPI-EXTRA FOLDER, AND REINSTALL AS A FRESH INSTALL.
-- OVERRIDES DISABLED ON NFS STORAGE
-- DO NOT INSTALL RGBPI-EXTRA IF YOU ONLY USE AN SD CARD. 
+- Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues.
+- YOU MUST UNINSTALL RGBPI-EXTRA IF YOU ARE REFLASHING YOUR SD CARD OR MOVING YOUR USB DRIVE TO A Pi5(SETTINGS > REMOVE)
+- DO NOT INSTALL RGBPI-EXTRA IF YOU ONLY USE AN SD CARD.
 - GAMEPAD REQUIRED TO NAVIGATE RGBPI-EXTRA UI
 
 ## Installation Options 
@@ -39,12 +34,10 @@ B: Offline Install
 
 After installing **RGBPi-Extra** you will now have a RGBPi-Extra folder within ports and within that the RGBPi-Extra launcher
 
-#### Retroarch Settings
-This allows you enable/disable retroarch features that are disabled by default in OS4. If you want to add more to it just edit /media/yourdrive/gameconfig/sys_override/global.cfg. Leaderboards are disabled when RGBPI-EXTRA is being used.
-#### Update Cores
-This allows you to updates cores to the lateset manually compiled version. There is a restore all cores button that will restore all default os4 core. 
+#### Core Updater
+This allows you to updates cores to the lateset manually compiled version. it also allows you replace the nes core with mesen. There is a restore all cores button that will restore all default os4 core. 
 #### System Manager
-This allows you to add new systems like NDS, PSP etc. Copy your system roms to the new rom folder, scan for games and the new systems will be added to the bottom of your system list.
+This allows you to install cores that do not come installed on OS4 by defualt. You can select the core you want, drop the roms into the new core folder in your roms dir and you are set. BIOS are already included. See core selection at the bottom of this page.
 #### Tweaks
 A collection of scripts to modify RGBPi OS settings, Bullseye settings or just general improvements
 #### Settings
@@ -60,18 +53,10 @@ I'll have a note at the end with some Info about it. if there is NO note or  [ ]
 
 Since we are using CRTs not all cores/emulators will look good. This all depends on the native resolution and fps of the games
 
-## Emulators 
-
-- [ ] - `box86` -"Box86 emulator"
-- [ ] - `openbor` - Beat 'em Up Game Engine (newest version) -
-- [X] - `pico8` - Fantasy Game Emulator - **Included in ports from RGBPi OS official**
-- [ ] - `supermodel-mechafatnick` - Sega Model 3 Arcade emulator
-- [ ] - `supermodel-svn` - Sega Model 3 Arcade emulator
-- [X] - `Hypseus-singe` - LaserDisc emulator - **Included in ports from RGBPi OS official**
-
 #### Added Libretro cores
 
 - [X] - `lr-mame2003-plus` - MAME emu - mame2003-plus port for libretro - **runs great**
+- [X] - `lr-opera` - 3DO Emu - 3DO port for libretro - **runs great**
 - [X] - `lr-melondsds` - NDS emu - MelonDS port for libretro - **runs 2d games fullspeed on Pi4, Pi5 everything runs**
 - [X] - `lr-dolphin` - Gamecube/wii emu - Dolphin port for libretro - **runs great, Pi5 only** 
 - [X] - `lr-mesen-s` - Nes emu - Mesen-S port for libretro
@@ -84,16 +69,3 @@ Since we are using CRTs not all cores/emulators will look good. This all depends
 - [X] - `lr-WonderSwan` - WonderSwan and WonderSwan Color emulator - **runs great, included in current patch**
 - [X] - `lr-AtariLynx` - Atari Lynx emulator - **runs great, included in current patch**
 - [X] - `lr-Videopac` - Videopac/Odyssey emulator - **runs great, included in current patch**
-
-
-#### Supplementary
-- [X] - `LXQT Desktop` - Linux Desktop Environment, optimized for 720x480 - **Installs Runs fine**
-- [X] - `firefox-esr` - FireFox-ESR - Formally known as IceWeasel, the Rebranded Firefox Web Browser - **Installs Runs fine**
-- [X] - `videolan` - VLC media player - **Installs Runs fine, but cant figure out how to get it out of default 240p**
-
-### Removed broken scripts
-
-
-## Hall of Fame - Ports added that made it to the official OS release
-
-- [X] - Kodi - Media Player
