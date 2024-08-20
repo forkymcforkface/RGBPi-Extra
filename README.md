@@ -7,7 +7,7 @@ Thank you [Ruben](https://github.com/rtomasa) for your guidance so that RGBPi-Ex
  
  **Important Notes**
 - Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues.
-- YOU MUST UNINSTALL RGBPI-EXTRA IF YOU ARE REFLASHING YOUR SD CARD OR MOVING YOUR USB DRIVE TO A Pi5(SETTINGS > REMOVE)
+- YOU MUST UNINSTALL RGBPI-EXTRA IF YOU ARE REFLASHING YOUR SD CARD (SETTINGS > REMOVE)
 - DO NOT INSTALL RGBPI-EXTRA IF YOU ONLY USE AN SD CARD.
 - GAMEPAD REQUIRED TO NAVIGATE RGBPI-EXTRA UI
 
@@ -52,6 +52,10 @@ If there is a [X] that means it works in OS4
 I'll have a note at the end with some Info about it. if there is NO note or  [ ] **PLEASE LET ME KNOW** if it works for you 
 
 Since we are using CRTs not all cores/emulators will look good. This all depends on the native resolution and fps of the games
+
+#### Additons
+Zapper core in New Systems allows for the use of the Arduino NES zapper hardware.
+https://github.com/riggles1/Zapper-Arduino
 
 #### Added Libretro cores
 
