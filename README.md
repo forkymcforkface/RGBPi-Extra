@@ -43,10 +43,7 @@ Update or Removal of RGBPi-Extra, You will need to rescan for games after updati
 ## Updates
 
 1. Go to settings
-2. Press update and allow the package to download
-
-If there is a [X] that means it works in OS4
-I'll have a note at the end with some Info about it. if there is NO note or  [ ] **PLEASE LET ME KNOW** if it works for you 
+2. Press update and allow the package to download and update
 
 Since we are using CRTs not all cores/emulators will look good. This all depends on the native resolution and fps of the games
 
