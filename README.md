@@ -1,19 +1,17 @@
 
 # RGBPi-Extra
 
-RGBpi-Extra is a UI that allows you to apply a collection of unofficial scripts, install new systems/cores, and allow for full retroarch access for [RGBPiOS](https://www.rgb-pi.com/#os). The system overrides are advanced features that require manual configuration. These scripts are experimental in nature and may not be fully stable. The concept for creating this repository was inspired by [RetroPie-Extra](https://github.com/Exarkuniv/RetroPie-Extra) and represents a collaborative effort across multiple parties within the RGBPi community. 
+RGBpi-Extra is a UI that allows you to apply a collection of unofficial scripts, install new systems/cores, and allow for full retroarch access for [RGB-Pi OS4](https://www.rgb-pi.com/#os) on the Pi4 and Pi5. The system overrides are advanced features that require manual configuration. These scripts are experimental in nature and may not be fully stable. The concept for creating this repository was inspired by [RetroPie-Extra](https://github.com/Exarkuniv/RetroPie-Extra) and represents a collaborative effort across multiple parties within the RGBPi community. 
 
 Thank you [Ruben](https://github.com/rtomasa) for your guidance so that RGBPi-Extra does not affect the RGB-Pi highscore community.
  
  **Important Notes**
 - Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues.
-- YOU MUST UNINSTALL RGBPI-EXTRA IF YOU ARE REFLASHING YOUR SD CARD (SETTINGS > REMOVE)
-- DO NOT INSTALL RGBPI-EXTRA IF YOU ONLY USE AN SD CARD.
-- GAMEPAD REQUIRED TO NAVIGATE RGBPI-EXTRA UI
 
 ## Installation Options 
 
-A: Online Installer
+A: - Pi4 Online Installer
+   - Pi5 Online Installer
 
 1. Download [Install RGBPi-Extra](https://github.com/forkymcforkface/RGBPi-Extra/blob/main/Install%20RGBPi-Extra.sh)
 2. Place it in your /roms/ports folder
