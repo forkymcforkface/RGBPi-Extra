@@ -10,8 +10,7 @@ Thank you [Ruben](https://github.com/rtomasa) for your guidance so that RGBPi-Ex
 
 ## Installation Options 
 
-A: - Pi4 Online Installer
-   - Pi5 Online Installer
+A: Online Installer
 
 1. Download [Install RGBPi-Extra](https://github.com/forkymcforkface/RGBPi-Extra/blob/main/Install%20RGBPi-Extra.sh)
 2. Place it in your /roms/ports folder
