@@ -6,6 +6,7 @@ RGBpi-Extra is a UI that allows you to apply a collection of unofficial scripts,
 Thank you [Ruben](https://github.com/rtomasa) for your guidance so that RGBPi-Extra does not affect the RGB-Pi highscore community.
  
  **Important Notes**
+- read the FAQ https://github.com/forkymcforkface/RGBPi-Extra/wiki/FAQ
 - Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues.
 
 ## Installation Options 
