@@ -53,8 +53,8 @@ Since we are using CRTs not all cores/emulators will look good. This all depends
 #### Additons
 Zapper core in New Systems allows for the use of the Arduino NES zapper hardware.
 https://github.com/riggles1/Zapper-Arduino
-Sega Channel Revival core in New Systems to play 
-BillyTimeGames larger sized Sega Channel Revival ROMs
+
+Sega Channel Revival core in New Systems allows for BillyTimeGames larger sized ROMs.
 https://github.com/BillyTimeGames/Genesis-Plus-GX-Expanded-Rom-Size
 
 #### Added Libretro cores
