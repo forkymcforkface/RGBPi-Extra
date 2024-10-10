@@ -1,5 +1,7 @@
 #!/bin/bash
 
+### Add your videos to /opt/rgbpi/ui/mods/videos
+
 systemctl disable boot-image.service
 sudo apt-get update
 sudo apt-get install -y vlc --no-install-recommends
