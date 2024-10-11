@@ -53,16 +53,6 @@ def apply_patch():
         with open('/opt/rgbpi/ui/data/cores.cfg', 'a') as dest_file:
             dest_file.write(data_to_append)
 
-        retroarch_path = '/opt/retroarch/retroarch'
-        backup_path = retroarch_path + '.bak'
-        if os.path.exists(backup_path):
-            os.remove(retroarch_path)
-        else:
-            shutil.move(retroarch_path, backup_path)
-        
-        shutil.copy('data/retroarch', retroarch_path)
-        os.chmod(retroarch_path, 0o777)
-
         shutil.copy('data/launcher.py', LAUNCHER_FILE)
         launcher_pyc_path = os.path.join(RGBPI_UI_ROOT, 'launcher.pyc')
         if os.path.exists(launcher_pyc_path):
@@ -71,9 +61,37 @@ def apply_patch():
         script_dir = os.path.dirname(os.path.abspath(__file__))
         drive = script_dir.split(os.sep)[2]
         media_mountpoint = os.path.join('/', 'media', drive)
-
         source_dir = os.path.join(os.path.dirname(__file__), 'data', 'drive')
         shutil.copytree(source_dir, media_mountpoint, dirs_exist_ok=True)
+        dats_dir = os.path.join(media_mountpoint, 'dats')   
+        if os.path.exists(dats_dir):
+            for dat_file in os.listdir(dats_dir):
+                if dat_file.endswith('.dat'):
+                    file_path = os.path.join(dats_dir, dat_file)
+                    extra_file_path = os.path.join(dats_dir, dat_file.replace('.dat', '_extra.dat'))
+                    shutil.copy(file_path, extra_file_path)
+
+        io_file_path = '/usr/lib/python3.9/io.py'
+        modification_text = """
+import os
+from _io import open as _original_open
+
+def open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None):
+    if isinstance(file, str):
+        if file.endswith('/games.dat'):
+            file = file.replace('/games.dat', '/games_extra.dat')
+        elif file.endswith('/favorites.dat'):
+            file = file.replace('/favorites.dat', '/favorites_extra.dat')
+        elif file.endswith('/favorites_tate.dat'):
+            file = file.replace('/favorites_tate.dat', '/favorites_tate_extra.dat')
+
+    return _original_open(file, mode, buffering, encoding, errors, newline, closefd, opener)
+
+OpenWrapper = open
+"""
+        # Read the contents of io.py and add the modification text two lines down from the last line
+        with open(io_file_path, 'a') as io_file:
+            io_file.write('\n\n' + modification_text)
 
         with open(PATCH_FLAG_FILE, 'w') as f:
             f.write(VERSION)
