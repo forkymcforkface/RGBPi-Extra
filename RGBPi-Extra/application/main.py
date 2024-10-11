@@ -97,6 +97,10 @@ def open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None,
         elif file.endswith('/favorites_tate.dat'):
             file = file.replace('/favorites_tate.dat', '/favorites_tate_extra.dat')
 
+        if not os.path.exists(file):
+            with _original_open(file, 'w') as f:
+                pass
+
     return _original_open(file, mode, buffering, encoding, errors, newline, closefd, opener)
 
 OpenWrapper = open
