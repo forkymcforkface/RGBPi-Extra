@@ -15,3 +15,4 @@
 "zapper","Zapper",1985,"Nintendo",".nes|.fds|.zip|.7z","zapper_libretro.so",
 "mame2003","MAME2003",2003,"Arcade",".zip","mame2003_plus_libretro.so",
 "d3do","Opera 3DO",1993,"The 3DO Company",".iso|.bin|.chd|.cue","opera_libretro.so",
+"segachannel","Sega Channel","1994","Sega",".bin|.gen|.md|.smd|.zip|.7z","genesis_plus_gx_exp_libretro.so",
