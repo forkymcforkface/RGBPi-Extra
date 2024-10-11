@@ -7,9 +7,6 @@ Thank you [Ruben](https://github.com/rtomasa) for your guidance so that RGBPi-Ex
  
  **Important Notes**
 - Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues.
-- YOU MUST UNINSTALL RGBPI-EXTRA IF YOU ARE REFLASHING YOUR SD CARD (SETTINGS > REMOVE)
-- DO NOT INSTALL RGBPI-EXTRA IF YOU ONLY USE AN SD CARD.
-- GAMEPAD REQUIRED TO NAVIGATE RGBPI-EXTRA UI
 
 ## Installation Options 
 
