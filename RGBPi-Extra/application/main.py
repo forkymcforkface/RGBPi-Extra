@@ -14,7 +14,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 RGBPI_UI_ROOT = '/opt/rgbpi/ui'
 PATCH_FLAG_FILE = os.path.join(RGBPI_UI_ROOT, 'patch_applied.flag')
 LAUNCHER_FILE = os.path.join(RGBPI_UI_ROOT, 'launcher.py')
-VERSION = 'v.20a'
+VERSION = 'v.21a'
 
 WINDOW_SIZE = (290, 240)
 
