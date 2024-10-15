@@ -53,16 +53,6 @@ def apply_patch():
         with open('/opt/rgbpi/ui/data/cores.cfg', 'a') as dest_file:
             dest_file.write(data_to_append)
 
-        retroarch_path = '/opt/retroarch/retroarch'
-        backup_path = retroarch_path + '.bak'
-        if os.path.exists(backup_path):
-            os.remove(retroarch_path)
-        else:
-            shutil.move(retroarch_path, backup_path)
-        
-        shutil.copy('data/retroarch', retroarch_path)
-        os.chmod(retroarch_path, 0o777)
-
         shutil.copy('data/launcher.py', LAUNCHER_FILE)
         launcher_pyc_path = os.path.join(RGBPI_UI_ROOT, 'launcher.pyc')
         if os.path.exists(launcher_pyc_path):
@@ -71,20 +61,26 @@ def apply_patch():
         script_dir = os.path.dirname(os.path.abspath(__file__))
         drive = script_dir.split(os.sep)[2]
         media_mountpoint = os.path.join('/', 'media', drive)
-
         source_dir = os.path.join(os.path.dirname(__file__), 'data', 'drive')
         shutil.copytree(source_dir, media_mountpoint, dirs_exist_ok=True)
-
         dats_dir = os.path.join(media_mountpoint, 'dats')   
+
+        dat_files_to_process = ['games.dat', 'favorites.dat', 'favorites_tate.dat']
+
         if os.path.exists(dats_dir):
-            for dat_file in os.listdir(dats_dir):
-                if dat_file.endswith('.dat'):
-                    file_path = os.path.join(dats_dir, dat_file)
-                    extra_file_path = os.path.join(dats_dir, dat_file.replace('.dat', '_extra.dat'))
+            for dat_file in dat_files_to_process:
+                file_path = os.path.join(dats_dir, dat_file)
+                extra_file_path = os.path.join(dats_dir, dat_file.replace('.dat', '_extra.dat'))
+
+                if os.path.exists(file_path):
+                    if os.path.exists(extra_file_path):
+                        os.remove(extra_file_path)
+                    
                     shutil.copy(file_path, extra_file_path)
 
         io_file_path = '/usr/lib/python3.9/io.py'
         modification_text = """
+#BELOW THIS LINE
 import os
 from _io import open as _original_open
 
@@ -105,8 +101,12 @@ def open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None,
 
 OpenWrapper = open
 """
-        with open(io_file_path, 'a') as io_file:
-            io_file.write('\n\n' + modification_text)
+        with open(io_file_path, 'r') as io_file:
+            io_content = io_file.read()
+
+        if modification_text not in io_content:
+            with open(io_file_path, 'a') as io_file:
+                io_file.write('\n\n' + modification_text)
 
         with open(PATCH_FLAG_FILE, 'w') as f:
             f.write(VERSION)
@@ -114,6 +114,7 @@ OpenWrapper = open
         error = 'patch'
     load_menu(error=error)
     os.system('reboot')
+
 
 def load_menu(error=None):
     menu.clear()
