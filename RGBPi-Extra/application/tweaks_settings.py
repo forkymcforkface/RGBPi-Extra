@@ -14,12 +14,39 @@ from core_updater import restore_default_cores
 RGBPI_ROOT = '/opt/rgbpi/ui'
 RA_ROOT = '/opt/retroarch'
 
+dats_directories = [
+    '/media/sd/dats',
+    '/media/usb1/dats',
+    '/media/usb2/dats',
+    '/media/nfsl/dats',
+    '/media/nfsg/dats'
+]
+
 def remove_patch(reboot=True):
     try:
         os.remove(os.path.join(RGBPI_ROOT, 'launcher.py'))
         os.rename(os.path.join(RGBPI_ROOT, 'launcher2.pyc'), os.path.join(RGBPI_ROOT, 'launcher.pyc'))
         os.remove(os.path.join(RGBPI_ROOT, 'patch_applied.flag'))
         shutil.copy('data/scripts/files/retroarch.cfg', '/root/.config/retroarch/retroarch.cfg')
+
+        extra_dat_files = ['games_extra.dat', 'favorites_extra.dat', 'favorites_tate_extra.dat']
+        for dat_dir in dats_directories:
+            if os.path.exists(dat_dir):
+                for extra_file in extra_dat_files:
+                    extra_file_path = os.path.join(dat_dir, extra_file)
+                    if os.path.exists(extra_file_path):
+                        os.remove(extra_file_path)
+
+        io_file_path = '/usr/lib/python3.9/io.py'
+        with open(io_file_path, 'r') as io_file:
+            io_content = io_file.read()
+
+        if '#BELOW THIS LINE' in io_content:
+            io_content = io_content.split('#BELOW THIS LINE')[0]
+
+            with open(io_file_path, 'w') as io_file:
+                io_file.write(io_content)
+
     except Exception as e:
         print(f"An error occurred: {e}")
 

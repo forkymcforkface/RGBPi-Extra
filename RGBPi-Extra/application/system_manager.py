@@ -42,26 +42,6 @@ def get_systems_from_cores():
     return systems, cores
 
 def restore_default_systems():
-    def clean_dats():
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        drive = script_dir.split(os.sep)[2]
-        dats_folder = f'/media/{drive}/dats/'
-        systems_to_remove, _ = get_systems_from_cores()
-
-        for dat_file in ['games.dat', 'favorites.dat']:
-            dat_file_path = os.path.join(dats_folder, dat_file)
-            if os.path.exists(dat_file_path):
-                with open(dat_file_path, 'r') as file:
-                    lines = file.readlines()
-
-                with open(dat_file_path, 'w') as file:
-                    header = lines[0]
-                    file.write(header)
-                    for line in lines[1:]:
-                        system = line.strip().split(',')[2].strip('"')
-                        if system not in systems_to_remove:
-                            file.write(line)
-
     def delete_cores():
         _, cores_to_delete = get_systems_from_cores()
         for core in cores_to_delete:
@@ -87,7 +67,6 @@ def restore_default_systems():
 
     if os.path.exists(BACKUP_SYSTEMS_FILE):
         shutil.copy(BACKUP_SYSTEMS_FILE, DESTINATION_SYSTEMS_FILE)
-        clean_dats()
         delete_cores()
         reset_systems_cores()
         os.remove(BACKUP_SYSTEMS_FILE)

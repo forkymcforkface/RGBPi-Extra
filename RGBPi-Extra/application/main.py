@@ -64,15 +64,23 @@ def apply_patch():
         source_dir = os.path.join(os.path.dirname(__file__), 'data', 'drive')
         shutil.copytree(source_dir, media_mountpoint, dirs_exist_ok=True)
         dats_dir = os.path.join(media_mountpoint, 'dats')   
+
+        dat_files_to_process = ['games.dat', 'favorites.dat', 'favorites_tate.dat']
+
         if os.path.exists(dats_dir):
-            for dat_file in os.listdir(dats_dir):
-                if dat_file.endswith('.dat'):
-                    file_path = os.path.join(dats_dir, dat_file)
-                    extra_file_path = os.path.join(dats_dir, dat_file.replace('.dat', '_extra.dat'))
+            for dat_file in dat_files_to_process:
+                file_path = os.path.join(dats_dir, dat_file)
+                extra_file_path = os.path.join(dats_dir, dat_file.replace('.dat', '_extra.dat'))
+
+                if os.path.exists(file_path):
+                    if os.path.exists(extra_file_path):
+                        os.remove(extra_file_path)
+                    
                     shutil.copy(file_path, extra_file_path)
 
         io_file_path = '/usr/lib/python3.9/io.py'
         modification_text = """
+#BELOW THIS LINE
 import os
 from _io import open as _original_open
 
@@ -93,9 +101,12 @@ def open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None,
 
 OpenWrapper = open
 """
-        # Read the contents of io.py and add the modification text two lines down from the last line
-        with open(io_file_path, 'a') as io_file:
-            io_file.write('\n\n' + modification_text)
+        with open(io_file_path, 'r') as io_file:
+            io_content = io_file.read()
+
+        if modification_text not in io_content:
+            with open(io_file_path, 'a') as io_file:
+                io_file.write('\n\n' + modification_text)
 
         with open(PATCH_FLAG_FILE, 'w') as f:
             f.write(VERSION)
