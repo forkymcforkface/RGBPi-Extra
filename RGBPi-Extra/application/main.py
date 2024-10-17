@@ -110,10 +110,14 @@ OpenWrapper = open
 
         with open(PATCH_FLAG_FILE, 'w') as f:
             f.write(VERSION)
+        os.system('chmod 777 /media/sd')
+
     except Exception as e:
         error = 'patch'
+    
     load_menu(error=error)
     os.system('reboot')
+
 
 
 def load_menu(error=None):
