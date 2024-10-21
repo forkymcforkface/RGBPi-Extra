@@ -46,6 +46,10 @@ subprocess.run(clone_cmd, check=True)
 source_dir = os.path.join(temp_dir, path)
 destination_dir = os.path.join(script_dir, path)
 shutil.move(source_dir, destination_dir)
+
+# Set 777 permissions for the entire folder
+subprocess.run(['chmod', '-R', '777', destination_dir], check=True)
+
 shutil.rmtree(temp_dir)
 
 with subprocess.Popen(['df', '-P', script_dir], stdout=subprocess.PIPE) as proc:
