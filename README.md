@@ -5,6 +5,8 @@ RGBpi-Extra is a UI that allows you to apply a collection of unofficial scripts,
 
 Thank you [Ruben](https://github.com/rtomasa) for your guidance so that RGBPi-Extra does not affect the RGB-Pi highscore community.
 
+*This is not part of official OS4 and is not supported. Do not ask for help for issues in discord or telegram of you ise rgbpi-extra.
+
 *when playing high score games via nfs all extra overrides are disabled and runs like stock OS4. This prevents cheating.
  
  **Important Notes**
