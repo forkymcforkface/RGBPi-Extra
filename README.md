@@ -10,12 +10,13 @@ Thank you [Ruben](https://github.com/rtomasa) for your guidance so that RGBPi-Ex
 *when playing high score games via nfs all extra overrides are disabled and runs like stock OS4. This prevents cheating.
  
  **Important Notes**
+- Don't use it if you only use an SD card for games. USB game drive supported only. 
 - read the FAQ https://github.com/forkymcforkface/RGBPi-Extra/wiki/FAQ
 - Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues.
 
-## Installation Options 
+## Installation Options
 
-A: Online Installer (Only works if you use a USB Rom drive)
+A: Online Installer
 
 1. Download [Install RGBPi-Extra](https://github.com/forkymcforkface/RGBPi-Extra/blob/main/Install%20RGBPi-Extra.sh)
 2. Place it in your /roms/ports folder
@@ -23,7 +24,7 @@ A: Online Installer (Only works if you use a USB Rom drive)
 4. Go to ports in rgbpi ui and run RGBPi-Extra
 5. The RGBPi-Extra UI will appear allowing you to apply make any tweaks
 
-B: Offline Install (Works with SD Card and USB rom setups)
+B: Offline Install
 
 1. Download the repo
  - [Pi-4 RGBPi-Extra zip](https://github.com/forkymcforkface/RGBPi-Extra/archive/refs/heads/main.zip)
