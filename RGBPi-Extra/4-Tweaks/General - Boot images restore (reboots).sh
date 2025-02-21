@@ -20,3 +20,4 @@ for image_path in "${image_paths[@]}"; do
 done
 
 echo "Image files have been restored from $src_dir."
+sudo reboot

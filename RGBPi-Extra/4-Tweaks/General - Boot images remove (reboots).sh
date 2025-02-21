@@ -36,4 +36,5 @@ done
 rm "$small_bmp"
 
 echo "Image files have been replaced with 1x1 pixel BMPs."
+sudo reboot
 
