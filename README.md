@@ -1,3 +1,8 @@
+# Announcement
+
+RGB-Pi extra will no longer get any development as ReplayOS covers 99% of what I was trying to do, and is SIGNIFICANTLY better than OS4. I suggest you go check it out and support THE developer on patreon.
+https://www.replayos.com/
+
 
 # RGBPi-Extra
 
