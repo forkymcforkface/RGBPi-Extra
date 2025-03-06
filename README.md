@@ -78,7 +78,7 @@ https://github.com/diekleinekuh/BennuGD_libretro/pull/22#event-16610045299
 - [X] - `lr-mesen` - NES emu - Mesen-S port for libretro **higher accuracy, fullspeed on Pi4**
 - [X] - `lr-atari5200` - 400, 800, 600 XL, 800XL, 130XE and 5200 game console emulator.
 - [X] - `lr-mednafen-vb` - Virtual Boy emulator - **runs great, not pixel perfect**
-- [X] - `lr-mednafen-pcfx` - NEC PC-FX emulator 
+- [X] - `lr-mednafen-pcfx` - NEC PC-FX emulator **fullspeed on Pi4**
 - [X] - `lr-ppsspp` - PlayStation Portable emu - PPSSPP port for libretro - **works well, included in current patch**
 - [X] - `lr-samecdi` - Philips CDI - same_cdi port for libretro - **runs great and at correct resolution, included in current patch**
 - [X] - `lr-TIC-80` - Fantasy Game Emulator - **runs great**
