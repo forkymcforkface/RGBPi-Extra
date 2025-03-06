@@ -65,6 +65,10 @@ https://github.com/riggles1/Zapper-Arduino
 Sega Channel Revival core in New Systems allows for BillyTimeGames larger sized ROMs.
 https://github.com/BillyTimeGames/Genesis-Plus-GX-Expanded-Rom-Size
 
+BennuGD core in New System allows for BennuGD games like Streets of Rage Remake to be played natively
+Extract and copy Streets of Rage Remake (folder containing the .exe) to the "bennugd" roms folder, BennuGD loads the .dat file.
+https://github.com/diekleinekuh/BennuGD_libretro/pull/22#event-16610045299
+
 #### Added Libretro cores
 
 - [X] - `lr-mame2003-plus` - MAME emu - mame2003-plus port for libretro - **runs great**
