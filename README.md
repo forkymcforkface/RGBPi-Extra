@@ -67,7 +67,7 @@ https://github.com/BillyTimeGames/Genesis-Plus-GX-Expanded-Rom-Size
 
 BennuGD core in New System allows for BennuGD games like Streets of Rage Remake to be played natively.
 Extract and copy Streets of Rage Remake (folder containing the .exe) to the "bennugd" roms folder, BennuGD loads the .dat file.
-https://github.com/diekleinekuh/BennuGD_libretro/pull/22#event-16610045299
+https://github.com/diekleinekuh/BennuGD_libretro/
 
 #### Added Libretro cores
 
