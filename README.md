@@ -69,7 +69,7 @@ https://github.com/diekleinekuh/BennuGD_libretro/
 - [X] - `lr-opera` - 3DO Emu - 3DO port for libretro - **runs great**
 - [X] - `lr-melondsds` - NDS emu - MelonDS port for libretro - **runs 2d games fullspeed on Pi4, Pi5 everything runs**
 - [X] - `lr-dolphin` - Gamecube/wii emu - Dolphin port for libretro - **runs great, Pi5 only**
-- [X] - `lr-mesen` - NES emu - Mesen-S port for libretro **higher accuracy, fullspeed on Pi4**
+- [X] - `lr-mesen` - NES emu - Mesen port for libretro **higher accuracy, fullspeed on Pi4**
 - [X] - `lr-atari5200` - 400, 800, 600 XL, 800XL, 130XE and 5200 game console emulator.
 - [X] - `lr-mednafen-vb` - Virtual Boy emulator - **runs great, not pixel perfect**
 - [X] - `lr-mednafen-pcfx` - NEC PC-FX emulator **fullspeed on Pi4**
