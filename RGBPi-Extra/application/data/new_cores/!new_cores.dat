@@ -17,3 +17,4 @@
 "d3do","Opera 3DO",1993,"The 3DO Company",".iso|.bin|.chd|.cue","opera_libretro.so",
 "segachannel","Sega Channel","1994","Sega",".bin|.gen|.md|.smd|.zip|.7z","genesis_plus_gx_exp_libretro.so",
 "bennugd","BennuGD","2025","BennuGD",".dat|.dcb","bennugd_libretro.so",
+"pcfx","PC-FX","1994","NEC",".cue|.chd|.m3u","mednafen_pcfx_libretro.so",
