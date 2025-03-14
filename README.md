@@ -61,8 +61,7 @@ https://github.com/BillyTimeGames/Genesis-Plus-GX-Expanded-Rom-Size
 
 BennuGD core in New System allows for BennuGD games like Streets of Rage Remake to be played natively. 
 Instructions: Extract and copy Streets of Rage Remake (folder containing the .exe) to the "bennugd" roms folder on the USB drive. 
-Start the .exe on your computer and map your controllers, set music+sfx volume to 30% (this makes the game as loud as any other core, you'll get distortion otherwise)
-exit the game (saves this to the USB), plug the USB into the Pi, mount and scan. The game should be in proper 240p if the core was added correctly.
+Start the .exe on your computer and map your controllers, exit the game (saves this to the USB), plug the USB into the Pi, mount and scan. The game should be in proper 240p if the core was added correctly.
 https://github.com/diekleinekuh/BennuGD_libretro/
 
 #### Added Libretro cores
