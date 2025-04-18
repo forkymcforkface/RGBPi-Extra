@@ -1,6 +1,8 @@
 # OS4-Tools WIP
 OS4-Tools is a refactor of RGBPi-Extra that utilizes bash scripts instead of a python ui. This is make it more user friendly, and easier for others to contribute to the project.
 
+- OS4 Tools will use the existing retroarch cfg overrides vs its own override system. This will allow for people to make changes easily in the retroarch ui vs having to change config files manually.
+
 
 #### Additons
 Zapper core in New Systems allows for the use of the Arduino NES zapper hardware.
