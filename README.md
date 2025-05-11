@@ -67,7 +67,7 @@ https://github.com/diekleinekuh/BennuGD_libretro/
 #### Added Libretro cores
 
 - [X] - `lr-mame2003-plus` - MAME emu - mame2003-plus port for libretro - **runs great**
-- [X] - `lr-opera` - 3DO Emu - 3DO port for libretro - **runs great**
+- [X] - `lr-opera` - 3DO Emu - 3DO port for libretro - **runs great*, Pi5 only*
 - [X] - `lr-melondsds` - NDS emu - MelonDS port for libretro - **runs 2d games fullspeed on Pi4, Pi5 everything runs**
 - [X] - `lr-dolphin` - Gamecube/wii emu - Dolphin port for libretro - **runs great, Pi5 only**
 - [X] - `lr-mesen` - NES emu - Mesen port for libretro **higher accuracy, fullspeed on Pi4**
