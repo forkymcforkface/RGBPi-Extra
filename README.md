@@ -81,3 +81,56 @@ https://github.com/diekleinekuh/BennuGD_libretro/
 - [X] - `lr-WonderSwan` - WonderSwan and WonderSwan Color emulator - **runs great, included in current patch**
 - [X] - `lr-AtariLynx` - Atari Lynx emulator - **runs great, included in current patch**
 - [X] - `lr-Videopac` - Videopac/Odyssey emulator - **runs great, included in current patch**
+
+#### Example of custom controller keys+keys (per USB controller device ID)
+
+Navigate in WinSCP or similar to opt\rgbpi\ui\data\joyconfig\
+select the .cfg file of your controller device (for example USB_Gamepad__121_17.cfg) 
+and edit the keys to your preferences, enable button + hotkey functions for fast-forward for example.
+```
+input_device = "USB Gamepad "
+input_device_display_name = "USB Gamepad"
+input_vendor_id = "121"
+input_product_id = "17"
+input_btn_style = "snes"
+input_up_axis = "-1"
+input_down_axis = "+1"
+input_left_axis = "-0"
+input_right_axis = "+0"
+input_a_btn = "4"
+input_b_btn = "2"
+input_x_btn = "3"
+input_y_btn = "1"
+input_l_btn = "6"
+input_r_btn = "7"
+input_l2_btn = "0"
+input_r2_btn = "5"
+input_start_btn = "9"
+input_select_btn = "8"
+
+input_enable_hotkey_btn = "8"
+input_menu_toggle_btn = "9"
+input_hold_fast_forward_btn = "6"
+input_volume_down_btn = "1"
+input_volume_up_btn = "3"
+
+
+input_save_state_axis = "+1"
+input_load_state_axis = "-1"
+input_state_slot_increase_axis = "+0"
+input_state_slot_decrease_axis = "-0"
+input_save_state_btn = "h0down"
+input_load_state_btn = "h0up"
+input_state_slot_increase_btn = "h0right"
+input_state_slot_decrease_btn = "h0left"
+```
+
+If your USB controller device is an Arduino adapter for 2+ controllers, you'll need to add the following strings to the end of cmdline.txt (boot partition of the SD card)
+Has to be on the same line of code, just add this at the very end.
+For the Arduino Leonardo add:
+usbhid.quirks=0x2341:0x8036:0x040
+For the Arduino Micro add:
+usbhid.quirks=0x2341:0x8037:0x040 
+
+
+
