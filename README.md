@@ -1,3 +1,6 @@
+# OS4.5 isn't currently supported.
+
+
 # RGBPi-Extra
 
 RGBpi-Extra is a UI that allows you to apply a collection of unofficial scripts, install new systems/cores, and allow for full* retroarch access for [RGB-Pi OS4](https://www.rgb-pi.com/#os) on the Pi4 and Pi5. The system overrides are advanced features that require manual configuration. These scripts are experimental in nature and may not be fully stable. The concept for creating this repository was inspired by [RetroPie-Extra](https://github.com/Exarkuniv/RetroPie-Extra) and represents a collaborative effort across multiple parties within the RGBPi community. 
