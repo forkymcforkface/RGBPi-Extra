@@ -27,7 +27,7 @@ B: Offline Install
 
 1. Download the repo
  - [Pi-4 RGBPi-Extra zip](https://github.com/forkymcforkface/RGBPi-Extra/archive/refs/heads/main.zip)
- - [Pi-5 RGBPi-Extra zip](https://github.com/forkymcforkface/RGBPi-Extra/archive/refs/heads/pi-5.zip)  (Migration of OS4 to Pi5 using this tool https://github.com/forkymcforkface/RGUI-Pi)
+ - [Pi-5 RGBPi-Extra zip](https://github.com/forkymcforkface/RGBPi-Extra/archive/refs/heads/pi-5.zip)
 3. Open the zip and extract the RGBPi-Extra folder to your ports folder
 4. Scan for games
 5. Open rgbpi-extra UI and install
