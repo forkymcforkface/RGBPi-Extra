@@ -8,10 +8,11 @@ Thank you [Ruben](https://github.com/rtomasa) for your guidance so that RGBPi-Ex
 
 *when playing high score games via nfs all extra overrides are disabled and runs like stock OS4. This prevents cheating.
  
- **Important Notes**
-- Don't use it if you only use an SD card for games. USB game drive supported only. 
+**Important Notes**
+- Don't use it if you only use an SD card for games. USB game drive supported only.
 - read the FAQ https://github.com/forkymcforkface/RGBPi-Extra/wiki/FAQ
 - Please use [Discussions](https://github.com/forkymcforkface/RGBPi-Extra/discussions) or [Issues](https://github.com/forkymcforkface/RGBPi-Extra/issues) if you have questions or issues.
+- The legacy Python interface has been removed; scripts are now launched directly from the OS4 UI.
 
 ## Installation Options
 
@@ -31,6 +32,29 @@ B: Offline Install
 3. Open the zip and extract the RGBPi-Extra folder to your ports folder
 4. Scan for games
 5. Open rgbpi-extra UI and install
+
+C: Folder-based Install
+
+1. Clone or download this repository into your `/roms/ports` folder.
+2. From inside the `RGBPi-Extra` directory run the new `install.sh` script to set up the folder structure.
+3. Scan for games in the RGB-Pi OS4 UI.
+4. Launch **RGBPi-Extra** from Ports to access the scripts.
+
+### mods layout and Bash examples
+
+```
+mods/
+└── boot/
+    ├── boot_videos.cfg
+    ├── boot_videos.py
+    └── videos/
+        └── 06- Render_2.mp4
+```
+
+Example calls from the OS4 UI:
+
+- `Ports → RGBPi-Extra → Tweaks → General - Boot image sequence remove (reboots).bash`
+- `Ports → RGBPi-Extra → Tweaks → Retroarch - Arcade Freeplay enable.bash`
 
 ## Usage
 
