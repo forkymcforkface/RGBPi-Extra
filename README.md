@@ -81,6 +81,8 @@ https://github.com/diekleinekuh/BennuGD_libretro/
 - [X] - `lr-WonderSwan` - WonderSwan and WonderSwan Color emulator - **runs great, included in current patch**
 - [X] - `lr-AtariLynx` - Atari Lynx emulator - **runs great, included in current patch**
 - [X] - `lr-Videopac` - Videopac/Odyssey emulator - **runs great, included in current patch**
+- [X] - `lr-zapper` - NES Zapper focused fceumm core **Play with a real NES Zapper using the Zapper-Arduino linked above, uses "zapper" as the rom folder"
+- [X] - `lr-geolith` - Neo Geo emu - Geolith port for libretro **fullspeed on Pi4, uses "geolith" as the rom folder**
 
 #### Example of custom controller keys+keys (per USB controller device ID)
 
