@@ -41,6 +41,12 @@ title=My Custom Scripts
 info=User added scripts
 description=A collection of my personal system maintenance scripts.
 ```
+# description: Clears the system page cache, dentries, and inodes to free up memory.
+```
+
+*   **title**: Overrides the filename in the menu.
+*   **info**: Short text shown at the bottom of the screen.
+*   **description**: Long text shown in the popup info view (Press X).
 
 ### 2. Adding Scripts
 
@@ -53,7 +59,7 @@ Add special comments at the top of your script to define how it appears in the m
 ```bash
 #!/bin/bash
 # title: Clear Cache
-# info: Frees up RAM
+# info: Free RAM
 # description: Clears the system page cache, dentries, and inodes to free up memory.
 ```
 
@@ -62,11 +68,9 @@ Add special comments at the top of your script to define how it appears in the m
 *   **description**: Long text shown in the popup info view (Press X).
 
 ### 3. Creating Toggles
-
 Toggles are special scripts that have `On` and `Off` states. You define these states using python-style `def` blocks inside your `.bash` file.
 
 **Structure:**
-
 ```bash
 #!/bin/bash
 # title: SSH Server
@@ -76,17 +80,14 @@ Toggles are special scripts that have `On` and `Off` states. You define these st
 def on
     systemctl start ssh
     echo "SSH Started"
-def
 
 def off
     systemctl stop ssh
     echo "SSH Stopped"
-def
 
 def status
     # Return exit code 0 for ON, 1 for OFF
     systemctl is-active ssh --quiet
-def
 ```
 
 *   **def on**: Commands to run when switching to ON.
@@ -94,6 +95,40 @@ def
 *   **def status** (Optional): Commands to check current state.
     *   If omitted, OS4 Tools will track state locally in `config.ini`.
     *   If provided, it should return exit code 0 for ON and non-zero for OFF.
+
+### 4. Creating Selection Scripts
+Selection scripts allow you to choose from a list of options.
+
+**Metadata Required:**
+*   `# type: selection`
+*   `# options: Option 1, Option 2, Option 3` (Comma separated list)
+*   `# default: Option 1` (Optional default value)
+
+**Structure:**
+```bash
+#!/bin/bash
+# title: System Performance
+# type: selection
+# options: Powersave, Balanced, Performance
+# default: Balanced
+
+def powersave
+    echo "powersave" | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+
+def balanced
+    echo "ondemand" | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+
+def performance
+    echo "performance" | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+
+def status
+    # Optional: Return the current value to override config.ini
+    cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+```
+
+*   **Function Names**: Create a `def` block for each option. The function name should be the option name in lowercase, with spaces replaced by underscores (e.g., "High Performance" -> `def high_performance`).
+*   **Persistence**: The selected option is automatically saved to `config.ini`.
+*   **Status Override**: If you provide a `def status` block that outputs a valid option name, it will take precedence over the saved value. If it returns nothing, the saved value is used.
 
 ### Environment Variables
 
