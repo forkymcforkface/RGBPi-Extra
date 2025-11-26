@@ -29,7 +29,6 @@ class OS4_Tools_View(object):
         try:
             with open(self.config_file, 'w') as f:
                 self.config.write(f)
-                OS4.show_notification('Settings Saved') 
         except Exception as e:
             print(f"Error saving config: {e}")
 
@@ -46,6 +45,10 @@ class OS4_Tools_View(object):
         self.scrap_info_x = layout['info_x']
         self.scrap_info_y = layout['info_y']
         self.opt_info_y = layout['opt_info_y']
+        self.helper_x = layout['help_x']
+        self.helper_y = layout['help_y']
+        self.page_x = layout['pager_x']
+        self.page_y = layout['pager_y']
 
     def setup_info_widgets(self):
         ui = OS4.get_ui_constants()
@@ -54,7 +57,6 @@ class OS4_Tools_View(object):
         self.info_bg = OS4.Image(name='tools_info_bg', image=bg_image, position=('center', 'center'), colorkey=ui['color_key'])
         self.info_bg._layer = 10
         self.info_bg.hide()
-        
         self.item_info_detail_title = OS4.Text(name='tools_info_title', text='details', is_active=True, font='title', is_upper=True, is_tate=OS4.is_tate(), position=('center', self.scrap_info_title_y), colorkey=ui['color_key'])
         self.item_info_detail = OS4.Text(name='tools_info_detail', text='', is_active=True, font='list', is_tate=OS4.is_tate(), position=(self.scrap_info_x, self.scrap_info_y), colorkey=ui['color_key'])
         self.item_info_detail_title._layer = 11
@@ -64,7 +66,20 @@ class OS4_Tools_View(object):
         self.is_info_mode = False
         
         self.item_info = OS4.Text(name='tools_item_info', text='', is_active=True, font='info', is_upper=True, is_tate=OS4.is_tate(), color=ui['info_color'], translate=False, position=('center', self.opt_info_y), colorkey=ui['color_key'])
+        self.helper_icon = None
+        self.gen_helper(is_active=True)
+        self.page_info = OS4.PageIndicator(name='tools_page_info', is_active=True, font='helper', color=ui['pager_color'], position=(self.page_x, self.page_y), colorkey=ui['color_key'])
         self.update_info()
+
+    def gen_helper(self, is_active, force_refresh=False):
+        is_folder = (self.current_menu == 'main')
+        img_path = OS4.Helper.get_image_path(is_folder=is_folder)
+        
+        if not self.helper_icon:
+            self.helper_icon = OS4.Sprite(name='tools_helper', is_active=is_active, image=img_path, position=(self.helper_x, self.helper_y), colorkey=OS4.get_ui_constants()['color_key'])
+        else:
+            self.helper_icon.change_image(image=img_path, colorkey=OS4.get_ui_constants()['color_key'])
+            self.helper_icon.set_position(position=(self.helper_x, self.helper_y))
 
     def gen_main_menu(self):
         self.__set_positions()
@@ -89,19 +104,18 @@ class OS4_Tools_View(object):
                     })
         if not self.menu_items:
             self.menu_items = ['No categories found']
-            
         self.option_list = OS4.List(name='tools_list', text=self.menu_items, is_active=True, font='list', translate=False, box_size=ui['line_size'], color=ui['list_color'], color_select=ui['list_select_color'], bg_color=ui['list_select_bg'], position=(self.list_x, self.list_y), line_space=ui['line_space'], list_size=ui['list_size'])
         self.option_list.index = self.main_menu_index
         self.option_list.refresh()
-        
+        self.setup_info_widgets()
+        self.gen_helper(is_active=True)
         self.item_selector = OS4.Selector(name='tools_sel', is_active=True, position=(self.selector_x, self.selector_y), line_space=ui['line_space'])
         self.option_list.append(self.item_selector)
-        
-        self.setup_info_widgets()
+        self.option_list.append(self.page_info)
         
         self.container_view = OS4.Container.create(name='tools_view')
         OS4.Container.append(parent=OS4.Container.get_bg(), child=self.container_view)
-        OS4.Container.append(parent=self.container_view, child=(self.title, self.option_list, self.info_bg, self.item_info_detail_title, self.item_info_detail, self.item_info))
+        OS4.Container.append(parent=self.container_view, child=(self.title, self.option_list, self.info_bg, self.item_info_detail_title, self.item_info_detail, self.item_info, self.helper_icon))
 
     def gen_category_menu(self, category):
         self.__set_positions()
@@ -168,15 +182,15 @@ class OS4_Tools_View(object):
         self.option_list = OS4.List(name='category_list', text=self.script_items, is_active=True, font='list', translate=False, box_size=ui['line_size'], color=ui['list_color'], color_select=ui['list_select_color'], bg_color=ui['list_select_bg'], position=(self.list_x, self.list_y), line_space=ui['line_space'], list_size=ui['list_size'])
         self.value_list = OS4.List(name='category_values', text='dummy', is_active=True, font='list', translate=False, box_size=ui['line_size'], color=ui['list_val_color'], color_select=ui['list_select_val_color'], bg_color=ui['list_select_bg'], position=(self.value_list_x, ui['value_list_y']), align='right', line_space=ui['line_space'], list_size=ui['list_size'])
         self.value_list.set_txt_list(text=self.value_items, index=0, l_icon_space=False)
-        
+        self.setup_info_widgets()
+        self.gen_helper(is_active=True)
         self.item_selector = OS4.Selector(name='category_sel', is_active=True, position=(self.selector_x, self.selector_y), line_space=ui['line_space'])
         self.option_list.append(self.item_selector)
-        
-        self.setup_info_widgets()
+        self.option_list.append(self.page_info)
         
         self.container_view = OS4.Container.create(name='category_view')
         OS4.Container.append(parent=OS4.Container.get_bg(), child=self.container_view)
-        OS4.Container.append(parent=self.container_view, child=(self.title, self.option_list, self.value_list, self.info_bg, self.item_info_detail_title, self.item_info_detail, self.item_info))
+        OS4.Container.append(parent=self.container_view, child=(self.title, self.option_list, self.value_list, self.info_bg, self.item_info_detail_title, self.item_info_detail, self.item_info, self.helper_icon))
 
     def _format_selection_value(self, status, current_idx, total_options):
         if total_options > 1:
@@ -360,6 +374,13 @@ class OS4_Tools_View(object):
         else:
             self.item_info.set_text(text='')
         self.item_info.set_position(position=('center', self.opt_info_y), is_tate=OS4.is_tate())
+        
+        if OS4.is_tate():
+             self.page_info.set_position(position=(self.page_x, self.page_y))
+             self.helper_icon.set_position(position=(self.helper_x, self.helper_y))
+        else:
+             self.page_info.set_position(position=(self.page_x, self.page_y))
+             self.helper_icon.set_position(position=(self.helper_x, self.helper_y))
 
     def handle_selection(self):
         item_index = self.option_list.get_list_info()[0]
