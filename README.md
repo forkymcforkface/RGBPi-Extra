@@ -2,6 +2,12 @@
 
 OS4 Tools is a dynamic, modular system utility for OS4 that allows users to manage scripts, tweaks, and system settings through a unified interface. It supports simple executable scripts as well as interactive toggles with state management.
 
+
+https://github.com/user-attachments/assets/aaf51379-8319-4318-b506-fffa9a74e059
+
+
+
+
 ## Features
 
 *   **Dynamic Menus**: Automatically generates menus based on the folder structure.
