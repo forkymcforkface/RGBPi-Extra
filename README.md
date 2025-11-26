@@ -1,4 +1,4 @@
-# OS4 Tools for Pi5
+# OS4 Tools for Pi5 (RGBPI-Extra refactor) WIP
 
 OS4 Tools is a dynamic, modular system utility for OS4 that allows users to manage scripts, tweaks, and system settings through a unified interface. It supports simple executable scripts as well as interactive toggles with state management.
 
