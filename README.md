@@ -41,14 +41,12 @@ Create a new folder in the `os4-tools` directory.
 #### Folder Metadata (`folder.ini`)
 To add a description to your category, create a `folder.ini` file inside the folder:
 
+example:
 ```ini
 [Metadata]
 title=My Custom Scripts
 info=User added scripts
 description=A collection of my personal system maintenance scripts.
-```
-# description: Clears the system page cache, dentries, and inodes to free up memory.
-```
 
 *   **title**: Overrides the filename in the menu.
 *   **info**: Short text shown at the bottom of the screen.
@@ -62,6 +60,7 @@ Place your scripts inside any category folder.
 #### Script Metadata
 Add special comments at the top of your script to define how it appears in the menu:
 
+example:
 ```bash
 #!/bin/bash
 # title: Clear Cache
@@ -76,6 +75,7 @@ Add special comments at the top of your script to define how it appears in the m
 ### 3. Creating Toggles
 Toggles are special scripts that have `On` and `Off` states. You define these states using python-style `def` blocks inside your `.bash` file.
 
+example:
 **Structure:**
 ```bash
 #!/bin/bash
