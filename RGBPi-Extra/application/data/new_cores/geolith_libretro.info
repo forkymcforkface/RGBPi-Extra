@@ -1,7 +1,7 @@
 # Software Information
 display_name = "SNK - Neo Geo AES/MVS (Geolith)"
 authors = "Rupert Carmichael"
-supported_extensions = "neo"
+supported_extensions = "neo|cue|bin|mdf|m3u|ccd|chd|iso|zip"
 corename = "Geolith"
 license = "BSD-3-Clause, MIT"
 permissions = ""
